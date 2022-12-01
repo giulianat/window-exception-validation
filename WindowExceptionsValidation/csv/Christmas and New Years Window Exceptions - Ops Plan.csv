@@ -1,0 +1,243 @@
+FC_Name,Zone_Code,City_Name,Original_Delivery_Day,Exception_Delivery_Day,Original_Delivery_Date,Exception_Delivery_Date,Is Employee Zone
+PNW,BLI,Bellingham,Monday,Tuesday,1,2,FALSE
+PNW,BDN,Bend,Monday,Tuesday,1,2,FALSE
+PNW,BOI,Boise,Monday,Tuesday,1,2,FALSE
+PNW,EUG,Eugene,Monday,Tuesday,1,2,FALSE
+PNW,OLM,Olympia,Monday,Tuesday,1,2,FALSE
+PNW,PDX,Portland,Monday,Tuesday,1,2,FALSE
+PNW,SEA,Seattle,Monday,Tuesday,1,2,FALSE
+PNW,SPK,Spokane,Monday,Tuesday,1,2,FALSE
+BWI,BOS,Boston,Tuesday,Tuesday,2,2,FALSE
+BWI,CLE,Cleveland,Tuesday,Tuesday,2,2,FALSE
+BWI,HAR,Hartford,Tuesday,Tuesday,2,2,FALSE
+BWI,MOC,Montgomery County,Monday,Tuesday,1,2,FALSE
+BWI,NVA,Northern Virginia,Tuesday,Tuesday,2,2,FALSE
+BWI,PHL,Philadelphia,Tuesday,Tuesday,2,2,FALSE
+BWI,PIT,Pittsburgh,Tuesday,Tuesday,2,2,FALSE
+BWI,RDU,Raleigh,Tuesday,Tuesday,2,2,FALSE
+BWI,RIC,Richmond,Tuesday,Tuesday,2,2,FALSE
+BWI,BWI,Severn,Monday,Tuesday,1,2,FALSE
+BWI,BRX,Bronx,Monday,Tuesday,1,2,FALSE
+BWI,LIM,Long Island,Monday,Tuesday,1,2,FALSE
+BWI,EWR,Newark,Monday,Tuesday,1,2,FALSE
+BWI,NVA,Northern Virginia,Monday,Tuesday,1,2,FALSE
+CHI,CHI,Chicago,Tuesday,Tuesday,2,2,FALSE
+CHI,CHI,Chicago,Monday,Tuesday,1,2,FALSE
+CHI,DSM,Des Moines,Tuesday,Tuesday,2,2,FALSE
+CHI,DTW,Detroit,Tuesday,Tuesday,2,2,FALSE
+CHI,DAY,Dayton,Monday,Tuesday,1,2,FALSE
+CHI,KCI,Kansas City,Tuesday,Tuesday,2,2,FALSE
+CHI,IND,Indianapolis,Monday,Tuesday,1,2,FALSE
+CHI,LOU,Louisville,Monday,Tuesday,1,2,FALSE
+CHI,MSN,Madison WI,Monday,Tuesday,1,2,FALSE
+CHI,MKE,Milwaukee,Monday,Tuesday,1,2,FALSE
+CHI,MSP,Minneapolis-Saint Paul,Monday,Tuesday,1,2,FALSE
+CHI,NWI,Northwest Indiana,Tuesday,Tuesday,2,2,FALSE
+CHI,SWM,Southwest Michigan,Tuesday,Tuesday,2,2,FALSE
+CHI,STL,St Louis,Tuesday,Tuesday,2,2,FALSE
+CHI,BNA,Nashville,Monday,Tuesday,1,2,FALSE
+LA,LAS,Las Vegas,Monday,Tuesday,1,2,FALSE
+LA,SLC,Salt Lake City,Monday,Tuesday,1,2,FALSE
+LA,PHX,Phoenix,Monday,Tuesday,1,2,FALSE
+LA,TUS,Tucson,Monday,Tuesday,1,2,FALSE
+LA,SBA,Santa Barbara,Monday,Tuesday,1,2,FALSE
+LA,LAX,Los Angeles,Monday,Tuesday,1,2,FALSE
+LA,SNA,Orange County,Monday,Tuesday,1,2,FALSE
+LA,SNA,Orange County,Tuesday,Tuesday,2,2,FALSE
+LA,SAN,San Diego,Monday,Tuesday,1,2,FALSE
+LA,SAN,San Diego,Tuesday,Tuesday,2,2,FALSE
+LA,SFO,San Francisco,Monday,Tuesday,1,2,FALSE
+LA,SBY,San Jose,Monday,Tuesday,1,2,FALSE
+LA,NBY,Santa Rosa,Monday,Tuesday,1,2,FALSE
+LA,EBY,Pittsburg CA,Monday,Tuesday,1,2,FALSE
+LA,RNO,Reno,Monday,Tuesday,1,2,FALSE
+LA,SAC,Sacramento,Monday,Tuesday,1,2,FALSE
+LA,SFO,San Francisco,Tuesday,Tuesday,2,2,FALSE
+LA,NBY,Santa Rosa,Tuesday,Tuesday,2,2,FALSE
+LA,MCE,Merced,Tuesday,Tuesday,2,2,FALSE
+LA,RNO,Reno,Tuesday,Tuesday,2,2,FALSE
+LA,SAC,Sacramento,Tuesday,Tuesday,2,2,FALSE
+SAT,AUS,Austin,Tuesday,Tuesday,2,2,FALSE
+SAT,BTR,Baton Rouge,Tuesday,Tuesday,2,2,FALSE
+SAT,DFW,Dallas-Fort Worth,Tuesday,Tuesday,2,2,FALSE
+SAT,IAH,Houston,Tuesday,Tuesday,2,2,FALSE
+SAT,OKC,Oklahoma City,Tuesday,Tuesday,2,2,FALSE
+SAT,SAT,San Antonio,Tuesday,Tuesday,2,2,FALSE
+SAT,SAT,San Antonio,Monday,Tuesday,1,2,FALSE
+PNW,BLI,Bellingham,Tuesday,Wednesday,2,3,FALSE
+PNW,BDN,Bend,Tuesday,Wednesday,2,3,FALSE
+PNW,BOI,Boise,Tuesday,Wednesday,2,3,FALSE
+PNW,EUG,Eugene,Tuesday,Wednesday,2,3,FALSE
+PNW,OLM,Olympia,Tuesday,Wednesday,2,3,FALSE
+PNW,PDX,Portland,Tuesday,Wednesday,2,3,FALSE
+PNW,SEA,Seattle,Tuesday,Wednesday,2,3,FALSE
+PNW,SPK,Spokane,Tuesday,Wednesday,2,3,FALSE
+BWI,BOS,Boston,Wednesday,Wednesday,3,3,FALSE
+BWI,CLE,Cleveland,Wednesday,Wednesday,3,3,FALSE
+BWI,HAR,Hartford,Wednesday,Wednesday,3,3,FALSE
+BWI,MOC,Montgomery County,Wednesday,Wednesday,3,3,FALSE
+BWI,NVA,Northern Virginia,Wednesday,Wednesday,3,3,FALSE
+BWI,PHL,Philadelphia,Wednesday,Wednesday,3,3,FALSE
+BWI,PIT,Pittsburgh,Wednesday,Wednesday,3,3,FALSE
+BWI,RDU,Raleigh,Wednesday,Wednesday,3,3,FALSE
+BWI,RIC,Richmond,Wednesday,Wednesday,3,3,FALSE
+BWI,BOS,Severn,Tuesday,Wednesday,2,3,FALSE
+BWI,BRX,Bronx,Tuesday,Wednesday,2,3,FALSE
+BWI,LIM,Long Island,Tuesday,Wednesday,2,3,FALSE
+BWI,EWR,Newark,Tuesday,Wednesday,2,3,FALSE
+BWI,MOC,Montgomery County,Tuesday,Wednesday,2,3,FALSE
+CHI,CHI,Chicago,Wednesday,Wednesday,3,3,FALSE
+CHI,DAY,Dayton,Tuesday,Wednesday,2,3,FALSE
+CHI,DSM,Des Moines,Wednesday,Wednesday,3,3,FALSE
+CHI,DTW,Detroit,Wednesday,Wednesday,3,3,FALSE
+CHI,IND,Indianapolis,Tuesday,Wednesday,2,3,FALSE
+CHI,LOU,Louisville,Tuesday,Wednesday,2,3,FALSE
+CHI,KCI,Kansas City,Wednesday,Wednesday,3,3,FALSE
+CHI,MSN,Madison WI,Tuesday,Wednesday,2,3,FALSE
+CHI,MKE,Milwaukee,Tuesday,Wednesday,2,3,FALSE
+CHI,MSP,Minneapolis-Saint Paul,Tuesday,Wednesday,2,3,FALSE
+CHI,BNA,Nashville,Tuesday,Wednesday,2,3,FALSE
+CHI,NWI,Northwest Indiana,Wednesday,Wednesday,3,3,FALSE
+CHI,SWM,Southwest Michigan,Wednesday,Wednesday,3,3,FALSE
+CHI,STL,St Louis,Wednesday,Wednesday,3,3,FALSE
+LA,DEN,Denver,Tuesday,Wednesday,2,3,FALSE
+LA,LAS,Las Vegas,Tuesday,Wednesday,2,3,FALSE
+LA,SLC,Salt Lake City,Tuesday,Wednesday,2,3,FALSE
+LA,PHX,Phoenix,Tuesday,Wednesday,2,3,FALSE
+LA,TUS,Tucson,Tuesday,Wednesday,2,3,FALSE
+LA,SBA,Santa Barbara,Tuesday,Wednesday,2,3,FALSE
+LA,LAX,Los Angeles,Tuesday,Wednesday,2,3,FALSE
+LA,SNA,Orange County,Wednesday,Wednesday,3,3,FALSE
+LA,SAN,San Diego,Wednesday,Wednesday,3,3,FALSE
+LA,SFO,San Francisco,Wednesday,Wednesday,3,3,FALSE
+LA,SBY,San Jose,Wednesday,Wednesday,3,3,FALSE
+LA,NBY,Santa Rosa,Wednesday,Wednesday,3,3,FALSE
+LA,MCE,Merced,Wednesday,Wednesday,3,3,FALSE
+LA,RNO,Reno,Wednesday,Wednesday,3,3,FALSE
+LA,SAC,Sacramento,Wednesday,Wednesday,3,3,FALSE
+LA,EBY,Pittsburg CA,Tuesday,Wednesday,2,3,FALSE
+LA,SBY,San Jose,Tuesday,Wednesday,2,3,FALSE
+SAT,AUS,Austin,Wednesday,Wednesday,3,3,FALSE
+SAT,BTR,Baton Rouge,Wednesday,Wednesday,3,3,FALSE
+SAT,DFW,Dallas-Fort Worth,Wednesday,Wednesday,3,3,FALSE
+SAT,IAH,Houston,Wednesday,Wednesday,3,3,FALSE
+SAT,OKC,Oklahoma City,Wednesday,Wednesday,3,3,FALSE
+SAT,SAT,San Antonio,Wednesday,Wednesday,3,3,FALSE
+PNW,BLI,Bellingham,Tuesday,Thursday,2,4,FALSE
+PNW,BDN,Bend,Tuesday,Thursday,2,4,FALSE
+PNW,BOI,Boise,Tuesday,Thursday,2,4,FALSE
+PNW,EUG,Eugene,Tuesday,Thursday,2,4,FALSE
+PNW,OLM,Olympia,Tuesday,Thursday,2,4,FALSE
+PNW,PDX,Portland,Tuesday,Thursday,2,4,FALSE
+PNW,SEA,Seattle,Tuesday,Thursday,2,4,FALSE
+PNW,SPK,Spokane,Tuesday,Thursday,2,4,FALSE
+BWI,BOS,Boston,Wednesday,Thursday,3,4,FALSE
+BWI,CLE,Cleveland,Wednesday,Thursday,3,4,FALSE
+BWI,HAR,Hartford,Wednesday,Thursday,3,4,FALSE
+BWI,MOC,Montgomery County,Wednesday,Thursday,3,4,FALSE
+BWI,NVA,Northern Virginia,Wednesday,Thursday,3,4,FALSE
+BWI,PHL,Philadelphia,Wednesday,Thursday,3,4,FALSE
+BWI,PIT,Pittsburgh,Wednesday,Thursday,3,4,FALSE
+BWI,RDU,Raleigh,Wednesday,Thursday,3,4,FALSE
+BWI,RIC,Richmond,Wednesday,Thursday,3,4,FALSE
+BWI,BOS,Severn,Tuesday,Thursday,2,4,FALSE
+BWI,BRX,Bronx,Tuesday,Thursday,2,4,FALSE
+BWI,LIM,Long Island,Tuesday,Thursday,2,4,FALSE
+BWI,EWR,Newark,Tuesday,Thursday,2,4,FALSE
+BWI,MOC,Montgomery County,Tuesday,Thursday,2,4,FALSE
+CHI,CHI,Chicago,Wednesday,Thursday,3,4,FALSE
+CHI,DAY,Dayton,Tuesday,Thursday,2,4,FALSE
+CHI,DSM,Des Moines,Wednesday,Thursday,3,4,FALSE
+CHI,DTW,Detroit,Wednesday,Thursday,3,4,FALSE
+CHI,IND,Indianapolis,Tuesday,Thursday,2,4,FALSE
+CHI,LOU,Louisville,Tuesday,Thursday,2,4,FALSE
+CHI,KCI,Kansas City,Wednesday,Thursday,3,4,FALSE
+CHI,MSN,Madison WI,Tuesday,Thursday,2,4,FALSE
+CHI,MKE,Milwaukee,Tuesday,Thursday,2,4,FALSE
+CHI,MSP,Minneapolis-Saint Paul,Tuesday,Thursday,2,4,FALSE
+CHI,BNA,Nashville,Tuesday,Thursday,2,4,FALSE
+CHI,NWI,Northwest Indiana,Wednesday,Thursday,3,4,FALSE
+CHI,SWM,Southwest Michigan,Wednesday,Thursday,3,4,FALSE
+CHI,STL,St Louis,Wednesday,Thursday,3,4,FALSE
+LA,DEN,Denver,Tuesday,Thursday,2,4,FALSE
+LA,LAS,Las Vegas,Tuesday,Thursday,2,4,FALSE
+LA,SLC,Salt Lake City,Tuesday,Thursday,2,4,FALSE
+LA,PHX,Phoenix,Tuesday,Thursday,2,4,FALSE
+LA,TUS,Tucson,Tuesday,Thursday,2,4,FALSE
+LA,SBA,Santa Barbara,Tuesday,Thursday,2,4,FALSE
+LA,LAX,Los Angeles,Tuesday,Thursday,2,4,FALSE
+LA,SNA,Orange County,Wednesday,Thursday,3,4,FALSE
+LA,SAN,San Diego,Wednesday,Thursday,3,4,FALSE
+LA,SFO,San Francisco,Wednesday,Thursday,3,4,FALSE
+LA,SBY,San Jose,Wednesday,Thursday,3,4,FALSE
+LA,NBY,Santa Rosa,Wednesday,Thursday,3,4,FALSE
+LA,MCE,Merced,Wednesday,Thursday,3,4,FALSE
+LA,RNO,Reno,Wednesday,Thursday,3,4,FALSE
+LA,SAC,Sacramento,Wednesday,Thursday,3,4,FALSE
+LA,EBY,Pittsburg CA,Tuesday,Thursday,2,4,FALSE
+LA,SBY,San Jose,Tuesday,Thursday,2,4,FALSE
+SAT,AUS,Austin,Wednesday,Thursday,3,4,FALSE
+SAT,BTR,Baton Rouge,Wednesday,Thursday,3,4,FALSE
+SAT,DFW,Dallas-Fort Worth,Wednesday,Thursday,3,4,FALSE
+SAT,IAH,Houston,Wednesday,Thursday,3,4,FALSE
+SAT,OKC,Oklahoma City,Wednesday,Thursday,3,4,FALSE
+SAT,SAT,San Antonio,Wednesday,Thursday,3,4,FALSE
+PNW,BLI,Bellingham,Tuesday,Friday,2,5,FALSE
+PNW,BDN,Bend,Tuesday,Friday,2,5,FALSE
+PNW,BOI,Boise,Tuesday,Friday,2,5,FALSE
+PNW,EUG,Eugene,Tuesday,Friday,2,5,FALSE
+PNW,OLM,Olympia,Tuesday,Friday,2,5,FALSE
+PNW,PDX,Portland,Tuesday,Friday,2,5,FALSE
+PNW,SEA,Seattle,Tuesday,Friday,2,5,FALSE
+PNW,SPK,Spokane,Tuesday,Friday,2,5,FALSE
+BWI,BOS,Boston,Wednesday,Friday,3,5,FALSE
+BWI,CLE,Cleveland,Wednesday,Friday,3,5,FALSE
+BWI,HAR,Hartford,Wednesday,Friday,3,5,FALSE
+BWI,MOC,Montgomery County,Wednesday,Friday,3,5,FALSE
+BWI,NVA,Northern Virginia,Wednesday,Friday,3,5,FALSE
+BWI,PHL,Philadelphia,Wednesday,Friday,3,5,FALSE
+BWI,PIT,Pittsburgh,Wednesday,Friday,3,5,FALSE
+BWI,RDU,Raleigh,Wednesday,Friday,3,5,FALSE
+BWI,RIC,Richmond,Wednesday,Friday,3,5,FALSE
+BWI,BOS,Severn,Tuesday,Friday,2,5,FALSE
+BWI,BRX,Bronx,Tuesday,Friday,2,5,FALSE
+BWI,LIM,Long Island,Tuesday,Friday,2,5,FALSE
+BWI,EWR,Newark,Tuesday,Friday,2,5,FALSE
+BWI,MOC,Montgomery County,Tuesday,Friday,2,5,FALSE
+CHI,CHI,Chicago,Wednesday,Friday,3,5,FALSE
+CHI,DAY,Dayton,Tuesday,Friday,2,5,FALSE
+CHI,DSM,Des Moines,Wednesday,Friday,3,5,FALSE
+CHI,DTW,Detroit,Wednesday,Friday,3,5,FALSE
+CHI,IND,Indianapolis,Tuesday,Friday,2,5,FALSE
+CHI,LOU,Louisville,Tuesday,Friday,2,5,FALSE
+CHI,KCI,Kansas City,Wednesday,Friday,3,5,FALSE
+CHI,MSN,Madison WI,Tuesday,Friday,2,5,FALSE
+CHI,MKE,Milwaukee,Tuesday,Friday,2,5,FALSE
+CHI,MSP,Minneapolis-Saint Paul,Tuesday,Friday,2,5,FALSE
+CHI,BNA,Nashville,Tuesday,Friday,2,5,FALSE
+CHI,NWI,Northwest Indiana,Wednesday,Friday,3,5,FALSE
+CHI,SWM,Southwest Michigan,Wednesday,Friday,3,5,FALSE
+CHI,STL,St Louis,Wednesday,Friday,3,5,FALSE
+LA,DEN,Denver,Tuesday,Friday,2,5,FALSE
+LA,LAS,Las Vegas,Tuesday,Friday,2,5,FALSE
+LA,SLC,Salt Lake City,Tuesday,Friday,2,5,FALSE
+LA,PHX,Phoenix,Tuesday,Friday,2,5,FALSE
+LA,TUS,Tucson,Tuesday,Friday,2,5,FALSE
+LA,SBA,Santa Barbara,Tuesday,Friday,2,5,FALSE
+LA,LAX,Los Angeles,Tuesday,Friday,2,5,FALSE
+LA,SNA,Orange County,Wednesday,Friday,3,5,FALSE
+LA,SAN,San Diego,Wednesday,Friday,3,5,FALSE
+LA,SFO,San Francisco,Wednesday,Friday,3,5,FALSE
+LA,SBY,San Jose,Wednesday,Friday,3,5,FALSE
+LA,NBY,Santa Rosa,Wednesday,Friday,3,5,FALSE
+LA,MCE,Merced,Wednesday,Friday,3,5,FALSE
+LA,RNO,Reno,Wednesday,Friday,3,5,FALSE
+LA,SAC,Sacramento,Wednesday,Friday,3,5,FALSE
+LA,EBY,Pittsburg CA,Tuesday,Friday,2,5,FALSE
+LA,SBY,San Jose,Tuesday,Friday,2,5,FALSE
+SAT,AUS,Austin,Wednesday,Friday,3,5,FALSE
+SAT,BTR,Baton Rouge,Wednesday,Friday,3,5,FALSE
+SAT,DFW,Dallas-Fort Worth,Wednesday,Friday,3,5,FALSE
+SAT,IAH,Houston,Wednesday,Friday,3,5,FALSE
+SAT,OKC,Oklahoma City,Wednesday,Friday,3,5,FALSE
+SAT,SAT,San Antonio,Wednesday,Friday,3,5,FALSE

@@ -1,0 +1,245 @@
+FC_Name,Zone_Code,City_Name,Original_Delivery_Day,Exception_Delivery_Day,Original_Delivery_Date,Exception_Delivery_Date
+PNW,BLI,Bellingham,Monday,Tuesday,1,2
+PNW,BDN,Bend,Monday,Tuesday,1,2
+PNW,BOI,Boise,Monday,Tuesday,1,2
+PNW,EUG,Eugene,Monday,Tuesday,1,2
+PNW,OLM,Olympia,Monday,Tuesday,1,2
+PNW,PDX,Portland,Monday,Tuesday,1,2
+PNW,SEA,Seattle,Monday,Tuesday,1,2
+PNW,SPK,Spokane,Monday,Tuesday,1,2
+BWI,BOS,Boston,Tuesday,Tuesday,2,2
+BWI,CLE,Cleveland,Tuesday,Tuesday,2,2
+BWI,HAR,Hartford,Tuesday,Tuesday,2,2
+BWI,MOC,Montgomery County,Monday,Tuesday,1,2
+BWI,NVA,Northern Virginia,Tuesday,Tuesday,2,2
+BWI,PHL,Philadelphia,Tuesday,Tuesday,2,2
+BWI,PIT,Pittsburgh,Tuesday,Tuesday,2,2
+BWI,RDU,Raleigh,Tuesday,Tuesday,2,2
+BWI,RIC,Richmond,Tuesday,Tuesday,2,2
+BWI,BWI,Severn,Monday,Tuesday,1,2
+BWI,BRX,Bronx,Monday,Tuesday,1,2
+BWI,LIM,Long Island,Monday,Tuesday,1,2
+BWI,EWR,Newark,Monday,Tuesday,1,2
+BWI,NVA,Northern Virginia,Monday,Tuesday,1,2
+CHI,CHI,Chicago,Tuesday,Tuesday,2,2
+CHI,CHI,Chicago,Monday,Tuesday,1,2
+CHI,DSM,Des Moines,Tuesday,Tuesday,2,2
+CHI,DTW,Detroit,Tuesday,Tuesday,2,2
+CHI,DAY,Dayton,Monday,Tuesday,1,2
+CHI,KCI,Kansas City,Tuesday,Tuesday,2,2
+CHI,IND,Indianapolis,Monday,Tuesday,1,2
+CHI,LOU,Louisville,Monday,Tuesday,1,2
+CHI,MSN,Madison WI,Monday,Tuesday,1,2
+CHI,MKE,Milwaukee,Monday,Tuesday,1,2
+CHI,MSP,Minneapolis-Saint Paul,Monday,Tuesday,1,2
+CHI,NWI,Northwest Indiana,Tuesday,Tuesday,2,2
+CHI,SWM,Southwest Michigan,Tuesday,Tuesday,2,2
+CHI,STL,St Louis,Tuesday,Tuesday,2,2
+CHI,BNA,Nashville,Monday,Tuesday,1,2
+LA,LAS,Las Vegas,Monday,Tuesday,1,2
+LA,SLC,Salt Lake City,Monday,Tuesday,1,2
+LA,PHX,Phoenix,Monday,Tuesday,1,2
+LA,TUS,Tucson,Monday,Tuesday,1,2
+LA,SBA,Santa Barbara,Monday,Tuesday,1,2
+LA,LAX,Los Angeles,Monday,Tuesday,1,2
+LA,SNA,Orange County,Monday,Tuesday,1,2
+LA,SNA,Orange County,Tuesday,Tuesday,2,2
+LA,SAN,San Diego,Monday,Tuesday,1,2
+LA,SAN,San Diego,Tuesday,Tuesday,2,2
+LA,SFO,San Francisco,Monday,Tuesday,1,2
+LA,SBY,San Jose,Monday,Tuesday,1,2
+LA,NBY,Santa Rosa,Monday,Tuesday,1,2
+LA,EBY,Pittsburg CA,Monday,Tuesday,1,2
+LA,RNO,Reno,Monday,Tuesday,1,2
+LA,SAC,Sacramento,Monday,Tuesday,1,2
+LA,SFO,San Francisco,Tuesday,Tuesday,2,2
+LA,NBY,Santa Rosa,Tuesday,Tuesday,2,2
+LA,MCE,Merced,Tuesday,Tuesday,2,2
+LA,RNO,Reno,Tuesday,Tuesday,2,2
+LA,SAC,Sacramento,Tuesday,Tuesday,2,2
+SAT,AUS,Austin,Tuesday,Tuesday,2,2
+SAT,BTR,Baton Rouge,Tuesday,Tuesday,2,2
+SAT,DFW,Dallas-Fort Worth,Tuesday,Tuesday,2,2
+SAT,IAH,Houston,Tuesday,Tuesday,2,2
+SAT,OKC,Oklahoma City,Tuesday,Tuesday,2,2
+SAT,SAT,San Antonio,Tuesday,Tuesday,2,2
+SAT,SAT,San Antonio,Monday,Tuesday,1,2
+PNW,BLI,Bellingham,Tuesday,Wednesday,2,3
+PNW,BDN,Bend,Tuesday,Wednesday,2,3
+PNW,BOI,Boise,Tuesday,Wednesday,2,3
+PNW,EUG,Eugene,Tuesday,Wednesday,2,3
+PNW,OLM,Olympia,Tuesday,Wednesday,2,3
+PNW,PDX,Portland,Tuesday,Wednesday,2,3
+PNW,SEA,Seattle,Tuesday,Wednesday,2,3
+PNW,SPK,Spokane,Tuesday,Wednesday,2,3
+BWI,BOS,Boston,Wednesday,Wednesday,3,3
+BWI,CLE,Cleveland,Wednesday,Wednesday,3,3
+BWI,HAR,Hartford,Wednesday,Wednesday,3,3
+BWI,MOC,Montgomery County,Wednesday,Wednesday,3,3
+BWI,NVA,Northern Virginia,Wednesday,Wednesday,3,3
+BWI,PHL,Philadelphia,Wednesday,Wednesday,3,3
+BWI,PIT,Pittsburgh,Wednesday,Wednesday,3,3
+BWI,RDU,Raleigh,Wednesday,Wednesday,3,3
+BWI,RIC,Richmond,Wednesday,Wednesday,3,3
+BWI,BOS,Severn,Tuesday,Wednesday,2,3
+BWI,BRX,Bronx,Tuesday,Wednesday,2,3
+BWI,LIM,Long Island,Tuesday,Wednesday,2,3
+BWI,EWR,Newark,Tuesday,Wednesday,2,3
+BWI,MOC,Montgomery County,Tuesday,Wednesday,2,3
+CHI,CHI,Chicago,Wednesday,Wednesday,3,3
+CHI,DAY,Dayton,Tuesday,Wednesday,2,3
+CHI,DSM,Des Moines,Wednesday,Wednesday,3,3
+CHI,DTW,Detroit,Wednesday,Wednesday,3,3
+CHI,IND,Indianapolis,Tuesday,Wednesday,2,3
+CHI,LOU,Louisville,Tuesday,Wednesday,2,3
+CHI,KCI,Kansas City,Wednesday,Wednesday,3,3
+CHI,MSN,Madison WI,Tuesday,Wednesday,2,3
+CHI,MKE,Milwaukee,Tuesday,Wednesday,2,3
+CHI,MSP,Minneapolis-Saint Paul,Tuesday,Wednesday,2,3
+CHI,BNA,Nashville,Tuesday,Wednesday,2,3
+CHI,NWI,Northwest Indiana,Wednesday,Wednesday,3,3
+CHI,SWM,Southwest Michigan,Wednesday,Wednesday,3,3
+CHI,STL,St Louis,Wednesday,Wednesday,3,3
+LA,DEN,Denver,Tuesday,Wednesday,2,3
+LA,LAS,Las Vegas,Tuesday,Wednesday,2,3
+LA,SLC,Salt Lake City,Tuesday,Wednesday,2,3
+LA,PHX,Phoenix,Tuesday,Wednesday,2,3
+LA,TUS,Tucson,Tuesday,Wednesday,2,3
+LA,SBA,Santa Barbara,Tuesday,Wednesday,2,3
+LA,LAX,Los Angeles,Tuesday,Wednesday,2,3
+LA,SNA,Orange County,Wednesday,Wednesday,3,3
+LA,SAN,San Diego,Wednesday,Wednesday,3,3
+LA,SFO,San Francisco,Wednesday,Wednesday,3,3
+LA,SBY,San Jose,Wednesday,Wednesday,3,3
+LA,NBY,Santa Rosa,Wednesday,Wednesday,3,3
+LA,MCE,Merced,Wednesday,Wednesday,3,3
+LA,RNO,Reno,Wednesday,Wednesday,3,3
+LA,SAC,Sacramento,Wednesday,Wednesday,3,3
+LA,EBY,Pittsburg CA,Tuesday,Wednesday,2,3
+LA,SBY,San Jose,Tuesday,Wednesday,2,3
+SAT,AUS,Austin,Wednesday,Wednesday,3,3
+SAT,BTR,Baton Rouge,Wednesday,Wednesday,3,3
+SAT,DFW,Dallas-Fort Worth,Wednesday,Wednesday,3,3
+SAT,IAH,Houston,Wednesday,Wednesday,3,3
+SAT,OKC,Oklahoma City,Wednesday,Wednesday,3,3
+SAT,SAT,San Antonio,Wednesday,Wednesday,3,3
+PNW,BLI,Bellingham,Wednesday,Thursday,3,4
+PNW,BDN,Bend,Wednesday,Thursday,3,4
+PNW,BOI,Boise,Wednesday,Thursday,3,4
+PNW,EUG,Eugene,Wednesday,Thursday,3,4
+PNW,OLM,Olympia,Wednesday,Thursday,3,4
+PNW,PDX,Portland,Wednesday,Thursday,3,4
+PNW,SEA,Seattle,Wednesday,Thursday,3,4
+PNW,SPK,Spokane,Wednesday,Thursday,3,4
+BWI,BOS,Boston,Thursday,Thursday,4,4
+BWI,CLE,Cleveland,Thursday,Thursday,4,4
+BWI,HAR,Hartford,Thursday,Thursday,4,4
+BWI,MOC,Montgomery County,Thursday,Thursday,4,4
+BWI,NVA,Northern Virginia,Thursday,Thursday,4,4
+BWI,PHL,Philadelphia,Thursday,Thursday,4,4
+BWI,PIT,Pittsburgh,Thursday,Thursday,4,4
+BWI,RDU,Raleigh,Thursday,Thursday,4,4
+BWI,RIC,Richmond,Thursday,Thursday,4,4
+BWI,BOS,Severn,Thursday,Thursday,4,4
+BWI,BRX,Bronx,Wednesday,Thursday,3,4
+BWI,LIM,Long Island,Wednesday,Thursday,3,4
+BWI,EWR,Newark,Wednesday,Thursday,3,4
+BWI,BOS,Severn,Wednesday,Thursday,3,4
+CHI,CHI,Chicago,Thursday,Thursday,4,4
+CHI,DAY,Dayton,Wednesday,Thursday,3,4
+CHI,DSM,Des Moines,Thursday,Thursday,4,4
+CHI,DTW,Detroit,Thursday,Thursday,4,4
+CHI,IND,Indianapolis,Wednesday,Thursday,3,4
+CHI,LOU,Louisville,Wednesday,Thursday,3,4
+CHI,KCI,Kansas City,Thursday,Thursday,4,4
+CHI,MSN,Madison WI,Wednesday,Thursday,3,4
+CHI,MKE,Milwaukee,Wednesday,Thursday,3,4
+CHI,MSP,Minneapolis-Saint Paul,Wednesday,Thursday,3,4
+CHI,BNA,Nashville,Wednesday,Thursday,3,4
+CHI,NWI,Northwest Indiana,Thursday,Thursday,4,4
+CHI,SWM,Southwest Michigan,Thursday,Thursday,4,4
+CHI,STL,St Louis,Thursday,Thursday,4,4
+LA,DEN,Denver,Wednesday,Thursday,3,4
+LA,LAS,Las Vegas,Wednesday,Thursday,3,4
+LA,SLC,Salt Lake City,Wednesday,Thursday,3,4
+LA,PHX,Phoenix,Wednesday,Thursday,3,4
+LA,TUS,Tucson,Wednesday,Thursday,3,4
+LA,SBA,Santa Barbara,Wednesday,Thursday,3,4
+LA,LAX,Los Angeles,Wednesday,Thursday,3,4
+LA,LAX,Los Angeles,Thursday,Thursday,4,4
+LA,SNA,Orange County,Thursday,Thursday,4,4
+LA,SAN,San Diego,Thursday,Thursday,4,4
+LA,SFO,San Francisco,Thursday,Thursday,4,4
+LA,SBY,San Jose,Thursday,Thursday,4,4
+LA,NBY,Santa Rosa,Thursday,Thursday,4,4
+LA,MCE,Merced,Thursday,Thursday,4,4
+LA,RNO,Reno,Thursday,Thursday,4,4
+LA,SAC,Sacramento,Thursday,Thursday,4,4
+LA,EBY,Pittsburg CA,Thursday,Thursday,4,4
+LA,EBY,Pittsburg CA,Wednesday,Thursday,3,4
+SAT,AUS,Austin,Thursday,Thursday,4,4
+SAT,BTR,Baton Rouge,Thursday,Thursday,4,4
+SAT,CRP,Corpus Christi,Thursday,Thursday,4,4
+SAT,DFW,Dallas-Fort Worth,Thursday,Thursday,4,4
+SAT,IAH,Houston,Thursday,Thursday,4,4
+SAT,OKC,Oklahoma City,Thursday,Thursday,4,4
+SAT,SAT,San Antonio,Thursday,Thursday,4,4
+SAT,TPL,Temple/Waco,Thursday,Thursday,4,4
+PNW,BLI,Bellingham,Thursday,Friday,4,5
+PNW,BDN,Bend,Thursday,Friday,4,5
+PNW,BOI,Boise,Thursday,Friday,4,5
+PNW,EUG,Eugene,Thursday,Friday,4,5
+PNW,OLM,Olympia,Thursday,Friday,4,5
+PNW,PDX,Portland,Thursday,Friday,4,5
+PNW,SEA,Seattle,Thursday,Friday,4,5
+PNW,SPK,Spokane,Thursday,Friday,4,5
+BWI,BOS,Boston,Friday,Friday,5,5
+BWI,CLE,Cleveland,Friday,Friday,5,5
+BWI,HAR,Hartford,Friday,Friday,5,5
+BWI,MOC,Montgomery County,Friday,Friday,5,5
+BWI,NVA,Northern Virginia,Friday,Friday,5,5
+BWI,PHL,Philadelphia,Friday,Friday,5,5
+BWI,PIT,Pittsburgh,Friday,Friday,5,5
+BWI,RDU,Raleigh,Friday,Friday,5,5
+BWI,RIC,Richmond,Friday,Friday,5,5
+BWI,BOS,Severn,Friday,Friday,5,5
+BWI,BRX,Bronx,Thursday,Friday,4,5
+BWI,LIM,Long Island,Thursday,Friday,4,5
+BWI,EWR,Newark,Thursday,Friday,4,5
+CHI,CHI,Chicago,Friday,Friday,5,5
+CHI,DAY,Dayton,Thursday,Friday,4,5
+CHI,DSM,Des Moines,Friday,Friday,5,5
+CHI,DTW,Detroit,Friday,Friday,5,5
+CHI,IND,Indianapolis,Thursday,Friday,4,5
+CHI,LOU,Louisville,Thursday,Friday,4,5
+CHI,KCI,Kansas City,Friday,Friday,5,5
+CHI,MSN,Madison WI,Thursday,Friday,4,5
+CHI,MKE,Milwaukee,Thursday,Friday,4,5
+CHI,MSP,Minneapolis-Saint Paul,Thursday,Friday,4,5
+CHI,BNA,Nashville,Thursday,Friday,4,5
+CHI,NWI,Northwest Indiana,Friday,Friday,5,5
+CHI,SWM,Southwest Michigan,Friday,Friday,5,5
+CHI,STL,St Louis,Friday,Friday,5,5
+LA,DEN,Denver,Thursday,Friday,4,5
+LA,LAS,Las Vegas,Thursday,Friday,4,5
+LA,SLC,Salt Lake City,Thursday,Friday,4,5
+LA,PHX,Phoenix,Thursday,Friday,4,5
+LA,TUS,Tucson,Thursday,Friday,4,5
+LA,SBA,Santa Barbara,Thursday,Friday,4,5
+LA,SBA,Santa Barbara,Friday,Friday,5,5
+LA,LAX,Los Angeles,Friday,Friday,5,5
+LA,SNA,Orange County,Friday,Friday,5,5
+LA,SAN,San Diego,Friday,Friday,5,5
+LA,SFO,San Francisco,Friday,Friday,5,5
+LA,SBY,San Jose,Friday,Friday,5,5
+LA,NBY,Santa Rosa,Friday,Friday,5,5
+LA,MCE,Merced,Friday,Friday,5,5
+LA,SAC,Sacramento,Friday,Friday,5,5
+LA,EBY,Pittsburg CA,Friday,Friday,5,5
+SAT,AUS,Austin,Friday,Friday,5,5
+SAT,BTR,Baton Rouge,Friday,Friday,5,5
+SAT,ATM,College Station,Friday,Friday,5,5
+SAT,DFW,Dallas-Fort Worth,Friday,Friday,5,5
+SAT,IAH,Houston,Friday,Friday,5,5
+SAT,OKC,Oklahoma City,Friday,Friday,5,5
+SAT,SAT,San Antonio,Friday,Friday,5,5
