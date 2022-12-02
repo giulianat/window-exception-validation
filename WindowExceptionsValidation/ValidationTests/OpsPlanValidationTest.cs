@@ -57,6 +57,18 @@ public class OpsPlanValidationTests
             Assert.That(record.Exception_Delivery_Date, Is.GreaterThanOrEqualTo(0));
         }
     }
+    
+    [Test]
+    public void ShouldNotContainDuplicates()
+    {
+        using var reader = new StreamReader(FilePathToBeValidated);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+        var actualOpsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
+        
+        
+        Assert.That(actualOpsPlan.GroupBy(r => r).Count(r => r.Count() > 1), Is.Zero);
+    }
 
     [Test]
     public void ShouldMatchImportZoneTotals()
