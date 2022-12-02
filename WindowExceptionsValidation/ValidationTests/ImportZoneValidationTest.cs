@@ -17,7 +17,7 @@ public class ImportZoneValidationTest
         var contentSplitByLine = File.ReadAllLines(FilePath);
         _deliveryIndices = contentSplitByLine[0].Split(",").Where(i => !string.IsNullOrEmpty(i)).ToList();
         _deliveryDaysOfTheWeek = contentSplitByLine[1].Split(",").Where(i => !string.IsNullOrEmpty(i)).ToList();
-        _records = Parser.ParseImportZone(contentSplitByLine).Records.ToList();
+        _records = Parser.ParseImportZone(contentSplitByLine).ToList();
     }
     
     [Test]

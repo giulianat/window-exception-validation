@@ -3,31 +3,13 @@ using CsvHelper;
 
 namespace WindowExceptionsValidation;
 
-public record ImportZone
-{
-    public IEnumerable<ImportZoneHeader> ColumnHeaders;
-    public IEnumerable<ImportZoneRecord> Records;
-}
-
-public record ImportZoneHeader
-{
-    public DayOfWeek Day;
-    public int Index;
-}
-
 public static class Parser
 {
-    public static ImportZone ParseImportZone(string[] allLines)
+    public static IEnumerable<ImportZoneRecord> ParseImportZone(string[] allLines)
     {
-        var deliveryIndices = allLines[0].Split(",").Where(i => !string.IsNullOrEmpty(i)).ToList();
-        var deliveryDaysOfTheWeek = allLines[1].Split(",").Where(i => !string.IsNullOrEmpty(i)).ToList();
-        var headers = deliveryIndices.Select((index, i) => new ImportZoneHeader
-        {
-            Index = int.Parse(index),
-            Day = Enum.Parse<DayOfWeek>(deliveryDaysOfTheWeek[i])
-        });
         var dataLines = allLines.Skip(2).ToArray();
-        var records = dataLines
+
+        return dataLines
             .Select(r =>
             {
                 var (s, m, t, w, h, f) = r.Split(",") switch
@@ -45,12 +27,6 @@ public static class Parser
                     Friday = f
                 };
             });
-
-        return new ImportZone
-        {
-            ColumnHeaders = headers,
-            Records = records
-        };
     }
 
     public static IEnumerable<OpsPlanRecord> ParseImportZone(string filePath)

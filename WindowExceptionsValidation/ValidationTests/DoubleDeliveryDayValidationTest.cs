@@ -1,14 +1,20 @@
+using System.Globalization;
+using CsvHelper;
+using Newtonsoft.Json;
+
 namespace WindowExceptionsValidation.ValidationTests;
 
 [TestFixture]
 public class DoubleDeliveryDayValidationTest
 {
-    private const string FilePath = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - Import Zone.csv";
+    private const string ImportZoneCsv = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - Import Zone.csv";
+    private const string OpsPlanCsv = 
+        @"./csv/Patrick's Copy of Xmas and NY Holiday Market_Zone Exception Tool - Output corrected.csv";
 
     [Test]
-    public void ShouldIdentifyDoubleDeliveryDays()
+    public void ShouldIdentifyDoubleDeliveryDaysGroupedByDay()
     {
-        var contentSplitByLine = File.ReadAllLines(FilePath);
+        var contentSplitByLine = File.ReadAllLines(ImportZoneCsv);
         var contentSplitByColumn = contentSplitByLine.Select(l => l.Split(",")).Skip(2).ToList();
         var dupeSundays = GetDuplicateCitiesForDate(contentSplitByColumn, 1).ToList();
         var dupeMondays = GetDuplicateCitiesForDate(contentSplitByColumn, 2).ToList();
@@ -24,6 +30,23 @@ public class DoubleDeliveryDayValidationTest
         Console.WriteLine($"Wednesday {dupeWednesdays.Count()} [{string.Join(", ", dupeWednesdays)}]");
         Console.WriteLine($"Thursday {dupeThursdays.Count()} [{string.Join(", ", dupeThursdays)}]");
         Console.WriteLine($"Friday {dupeFridays.Count()} [{string.Join(", ", dupeFridays)}]");
+        
+        Assert.Pass();
+    }
+
+    [Test]
+    public void ShouldIdentifyDoubleDeliveryDaysGroupedByOriginalZone()
+    {
+        using var reader = new StreamReader(OpsPlanCsv);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+        var opsPlan = csv
+            .GetRecords<OpsPlanRecord>()
+            .GroupBy(p => $"{p.City_Name} - {p.Exception_Delivery_Day}")
+            .Where(g => g.Count() > 1)
+            .ToDictionary(g => g.Key, g => g.Select(p => p.Original_Delivery_Day).OrderBy(d => d).Select(d => d.ToString()));
+
+        Console.WriteLine(JsonConvert.SerializeObject(opsPlan, Formatting.Indented));
         
         Assert.Pass();
     }
