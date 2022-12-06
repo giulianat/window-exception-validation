@@ -5,12 +5,6 @@ namespace WindowExceptionsValidation.ValidationTests;
 [TestFixture]
 public class ImportZoneValidationTest
 {
-    private const string FilePath = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - Import Zone.csv";
-
-    private List<string> _deliveryDaysOfTheWeek = new();
-    private List<string> _deliveryIndices = new();
-    private List<ImportZoneRecord> _records = new();
-
     [SetUp]
     public void Setup()
     {
@@ -19,7 +13,13 @@ public class ImportZoneValidationTest
         _deliveryDaysOfTheWeek = contentSplitByLine[1].Split(",").Where(i => !string.IsNullOrEmpty(i)).ToList();
         _records = Parser.ParseImportZone(contentSplitByLine).ToList();
     }
-    
+
+    private const string FilePath = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - Import Zone.csv";
+
+    private List<string> _deliveryDaysOfTheWeek = new();
+    private List<string> _deliveryIndices = new();
+    private List<ImportZoneRecord> _records = new();
+
     [Test]
     public void ShouldSummarizeImportZone()
     {
@@ -34,13 +34,14 @@ public class ImportZoneValidationTest
         var unchangedWednesdays = contentSplitByColumn.Count(l => l[4].Contains("Wednesday"));
         var unchangedThursdays = contentSplitByColumn.Count(l => l[5].Contains("Thursday"));
         var unchangedFridays = contentSplitByColumn.Count(l => l[6].Contains("Friday"));
-        var numberOfUnchangedWindows = unchangedSundays + unchangedMondays + unchangedTuesdays + unchangedWednesdays + unchangedThursdays + unchangedFridays;
-        
+        var numberOfUnchangedWindows = unchangedSundays + unchangedMondays + unchangedTuesdays + unchangedWednesdays +
+                                       unchangedThursdays + unchangedFridays;
+
         Console.WriteLine($"{contentSplitByLine.Length} lines");
         Console.WriteLine($"{numberOfDashes} total window exceptions");
         Console.WriteLine($"{numberOfEmp} EMP window exceptions");
         Console.WriteLine($"{numberOfUnchangedWindows} unchanged windows");
-        
+
         Assert.Pass();
     }
 
@@ -84,7 +85,7 @@ public class ImportZoneValidationTest
     private static void AssertThatDeliveryEntryIsValid(string deliveryEntry, int index)
     {
         if (deliveryEntry == string.Empty) return;
-        
+
         Assert.That(deliveryEntry, Does.Contain(" - "));
 
         var delivery = deliveryEntry.Split(" - ");

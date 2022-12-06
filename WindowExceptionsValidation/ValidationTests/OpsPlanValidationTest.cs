@@ -11,9 +11,9 @@ public class OpsPlanValidationTests
 
     private const string FilePathToBeValidated =
         @"./csv/Patrick's Copy of Xmas and NY Holiday Market_Zone Exception Tool - Output corrected.csv";
-        //@"./csv/[Dylan] Second Validation – New Output - Output.csv";
-        //@"./csv/Christmas and New Years Window Exceptions - Ops Plan.csv";
-        
+    //@"./csv/[Dylan] Second Validation – New Output - Output.csv";
+    //@"./csv/Christmas and New Years Window Exceptions - Ops Plan.csv";
+
     private readonly List<OpsPlanRecord> _expectedOpsPlan = Parser.ParseImportZone(InputFilePath).ToList();
 
     [Test]
@@ -57,7 +57,7 @@ public class OpsPlanValidationTests
             Assert.That(record.Exception_Delivery_Date, Is.GreaterThanOrEqualTo(0));
         }
     }
-    
+
     [Test]
     public void ShouldNotContainDuplicates()
     {
@@ -65,8 +65,8 @@ public class OpsPlanValidationTests
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
         var actualOpsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
-        
-        
+
+
         Assert.That(actualOpsPlan.GroupBy(r => r).Count(r => r.Count() > 1), Is.Zero);
     }
 
@@ -77,7 +77,7 @@ public class OpsPlanValidationTests
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var opsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
         var outputUnchanged = opsPlan.Where(r => r.Exception_Delivery_Day == r.Original_Delivery_Day);
-        
+
         var content = File.ReadAllText(InputFilePath);
         var contentSplitByLine = File.ReadAllLines(InputFilePath);
         var numberOfDashes = Regex.Matches(content, " - ").Count;
@@ -89,12 +89,13 @@ public class OpsPlanValidationTests
         var unchangedWednesdays = contentSplitByColumn.Count(l => l[4].Contains("Wednesday"));
         var unchangedThursdays = contentSplitByColumn.Count(l => l[5].Contains("Thursday"));
         var unchangedFridays = contentSplitByColumn.Count(l => l[6].Contains("Friday"));
-        var inputUnchanged = unchangedSundays + unchangedMondays + unchangedTuesdays + unchangedWednesdays + unchangedThursdays + unchangedFridays;
+        var inputUnchanged = unchangedSundays + unchangedMondays + unchangedTuesdays + unchangedWednesdays +
+                             unchangedThursdays + unchangedFridays;
 
         Assert.That(opsPlan, Has.Count.EqualTo(numberOfDashes - numberOfEmp));
         Assert.That(outputUnchanged.Count(), Is.EqualTo(inputUnchanged));
     }
-    
+
     [Test]
     public void ShouldSummarizeOpsPlan()
     {
@@ -103,11 +104,11 @@ public class OpsPlanValidationTests
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var opsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
         var unchanged = opsPlan.Where(r => r.Exception_Delivery_Day == r.Original_Delivery_Day);
-        
+
         Console.WriteLine($"{contentSplitByLine.Length} lines");
         Console.WriteLine($"{opsPlan.Count} total window exceptions");
         Console.WriteLine($"{unchanged.Count()} unchanged windows");
-        
+
         Assert.Pass();
     }
 }

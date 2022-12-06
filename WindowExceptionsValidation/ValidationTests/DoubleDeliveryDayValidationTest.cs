@@ -8,7 +8,8 @@ namespace WindowExceptionsValidation.ValidationTests;
 public class DoubleDeliveryDayValidationTest
 {
     private const string ImportZoneCsv = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - Import Zone.csv";
-    private const string OpsPlanCsv = 
+
+    private const string OpsPlanCsv =
         @"./csv/Patrick's Copy of Xmas and NY Holiday Market_Zone Exception Tool - Output corrected.csv";
 
     [Test]
@@ -22,7 +23,7 @@ public class DoubleDeliveryDayValidationTest
         var dupeWednesdays = GetDuplicateCitiesForDate(contentSplitByColumn, 4).ToList();
         var dupeThursdays = GetDuplicateCitiesForDate(contentSplitByColumn, 5).ToList();
         var dupeFridays = GetDuplicateCitiesForDate(contentSplitByColumn, 6).ToList();
-        
+
         Console.WriteLine("Double Deliveries on...");
         Console.WriteLine($"Sunday {dupeSundays.Count()} [{string.Join(", ", dupeSundays)}]");
         Console.WriteLine($"Monday {dupeMondays.Count()} [{string.Join(", ", dupeMondays)}]");
@@ -30,7 +31,7 @@ public class DoubleDeliveryDayValidationTest
         Console.WriteLine($"Wednesday {dupeWednesdays.Count()} [{string.Join(", ", dupeWednesdays)}]");
         Console.WriteLine($"Thursday {dupeThursdays.Count()} [{string.Join(", ", dupeThursdays)}]");
         Console.WriteLine($"Friday {dupeFridays.Count()} [{string.Join(", ", dupeFridays)}]");
-        
+
         Assert.Pass();
     }
 
@@ -42,12 +43,13 @@ public class DoubleDeliveryDayValidationTest
 
         var opsPlan = csv
             .GetRecords<OpsPlanRecord>()
-            .GroupBy(p => $"{p.City_Name} - {p.Exception_Delivery_Day}")
+            .GroupBy(p => $"{p.City_Name} on {p.Exception_Delivery_Day}")
             .Where(g => g.Count() > 1)
-            .ToDictionary(g => g.Key, g => g.Select(p => p.Original_Delivery_Day).OrderBy(d => d).Select(d => d.ToString()));
+            .ToDictionary(g => g.Key,
+                g => g.Select(p => p.Original_Delivery_Day).OrderBy(d => d).Select(d => d.ToString()));
 
         Console.WriteLine(JsonConvert.SerializeObject(opsPlan, Formatting.Indented));
-        
+
         Assert.Pass();
     }
 
