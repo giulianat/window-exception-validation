@@ -156,25 +156,28 @@ public class ZoneToDayMappingOutputValidationTest
         csv.Context.RegisterClassMap<ZoneToDayMappingOutputRecordMap>();
         var expectedRecords = csv.GetRecords<ZoneToDayMappingOutputRecord>().ToList();
 
-        foreach (var zonesRecord in _zones)
+        Assert.Multiple(() =>
         {
-            var correspondingZones = expectedRecords
-                .Where(r => r.ZoneId == zonesRecord.zoneId)
-                .ToList();
-            var correspondingWindow = _windows.First(w => w.zoneId == zonesRecord.zoneId);
-            var custoOpenDayOfWeek = correspondingWindow.customizationStartDay!.Value;
-            var custoOpenTime = correspondingWindow.customizationStartTime;
-            var christmasCustoOpenDate = ChristmasWeekMap[custoOpenDayOfWeek].AddDays(-7).ToString();
-            var newYearsCustoOpenDate = NewYearsWeekMap[custoOpenDayOfWeek].AddDays(-7).ToString();
-            var christmasCustoOpenDateTime = $"{christmasCustoOpenDate} {custoOpenTime}";
-            var newYearsCustoOpenDateTime = $"{newYearsCustoOpenDate} {custoOpenTime}";
-
-            Assert.That(correspondingZones.Count, Is.EqualTo(2));
-            Assert.That(correspondingZones[0].Holiday, Is.EqualTo("Christmas"));
-            Assert.That(correspondingZones[0].CustoOpenDateTime, Is.EqualTo(christmasCustoOpenDateTime));
-            Assert.That(correspondingZones[1].Holiday, Is.EqualTo("New Years"));
-            Assert.That(correspondingZones[1].CustoOpenDateTime, Is.EqualTo(newYearsCustoOpenDateTime));
-        }
+            foreach (var zonesRecord in _zones)
+            {
+                var correspondingZones = expectedRecords
+                    .Where(r => r.ZoneId == zonesRecord.zoneId)
+                    .ToList();
+                var correspondingWindow = _windows.First(w => w.zoneId == zonesRecord.zoneId);
+                var custoOpenDayOfWeek = correspondingWindow.customizationStartDay!.Value;
+                var custoOpenTime = correspondingWindow.customizationStartTime;
+                var christmasCustoOpenDate = ChristmasWeekMap[custoOpenDayOfWeek].AddDays(-7).ToString();
+                var newYearsCustoOpenDate = NewYearsWeekMap[custoOpenDayOfWeek].AddDays(-7).ToString();
+                var christmasCustoOpenDateTime = $"{christmasCustoOpenDate} {custoOpenTime}";
+                var newYearsCustoOpenDateTime = $"{newYearsCustoOpenDate} {custoOpenTime}";
+                
+                Assert.That(correspondingZones.Count, Is.EqualTo(2));
+                Assert.That(correspondingZones[0].Holiday, Is.EqualTo("Christmas"));
+                Assert.That(correspondingZones[0].CustoOpenDateTime, Is.EqualTo(christmasCustoOpenDateTime));
+                Assert.That(correspondingZones[1].Holiday, Is.EqualTo("New Years"));
+                Assert.That(correspondingZones[1].CustoOpenDateTime, Is.EqualTo(newYearsCustoOpenDateTime));
+            }
+        });
     }
 
     [Test]
@@ -186,25 +189,28 @@ public class ZoneToDayMappingOutputValidationTest
         csv.Context.RegisterClassMap<ZoneToDayMappingOutputRecordMap>();
         var expectedRecords = csv.GetRecords<ZoneToDayMappingOutputRecord>().ToList();
 
-        foreach (var zonesRecord in _zones)
+        Assert.Multiple(() =>
         {
-            var correspondingZones = expectedRecords
-                .Where(r => r.ZoneId == zonesRecord.zoneId)
-                .ToList();
-            var correspondingWindow = _windows.First(w => w.zoneId == zonesRecord.zoneId);
-            var custoClosedDayOfWeek = correspondingWindow.customizationEndDay!.Value;
-            var custoClosedTime = correspondingWindow.customizationEndTime;
-            var christmasCustoClosedDate = ChristmasWeekMap[custoClosedDayOfWeek].AddDays(-7).ToString();
-            var newYearsCustoClosedDate = NewYearsWeekMap[custoClosedDayOfWeek].AddDays(-7).ToString();
-            var christmasCustoClosedDateTime = $"{christmasCustoClosedDate} {custoClosedTime}";
-            var newYearsCustoClosedDateTime = $"{newYearsCustoClosedDate} {custoClosedTime}";
+            foreach (var zonesRecord in _zones)
+            {
+                var correspondingZones = expectedRecords
+                    .Where(r => r.ZoneId == zonesRecord.zoneId)
+                    .ToList();
+                var correspondingWindow = _windows.First(w => w.zoneId == zonesRecord.zoneId);
+                var custoClosedDayOfWeek = correspondingWindow.customizationEndDay!.Value;
+                var custoClosedTime = correspondingWindow.customizationEndTime;
+                var christmasCustoClosedDate = ChristmasWeekMap[custoClosedDayOfWeek].AddDays(-7).ToString();
+                var newYearsCustoClosedDate = NewYearsWeekMap[custoClosedDayOfWeek].AddDays(-7).ToString();
+                var christmasCustoClosedDateTime = $"{christmasCustoClosedDate} {custoClosedTime}";
+                var newYearsCustoClosedDateTime = $"{newYearsCustoClosedDate} {custoClosedTime}";
 
-            Assert.That(correspondingZones.Count, Is.EqualTo(2));
-            Assert.That(correspondingZones[0].Holiday, Is.EqualTo("Christmas"));
-            Assert.That(correspondingZones[0].CustoOpenDateTime, Is.EqualTo(christmasCustoClosedDateTime));
-            Assert.That(correspondingZones[1].Holiday, Is.EqualTo("New Years"));
-            Assert.That(correspondingZones[1].CustoOpenDateTime, Is.EqualTo(newYearsCustoClosedDateTime));
-        }
+                Assert.That(correspondingZones.Count, Is.EqualTo(2));
+                Assert.That(correspondingZones[0].Holiday, Is.EqualTo("Christmas"));
+                Assert.That(correspondingZones[0].CustoCloseDateTime, Is.EqualTo(christmasCustoClosedDateTime));
+                Assert.That(correspondingZones[1].Holiday, Is.EqualTo("New Years"));
+                Assert.That(correspondingZones[1].CustoCloseDateTime, Is.EqualTo(newYearsCustoClosedDateTime));
+            }
+        });
     }
 
     [Test]
