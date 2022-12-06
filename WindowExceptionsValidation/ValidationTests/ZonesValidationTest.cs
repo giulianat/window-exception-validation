@@ -20,7 +20,7 @@ public class ZonesValidationTest
         using var mappingsCsv = new CsvReader(mappingsReader, CultureInfo.InvariantCulture);
 
         mappingsCsv.Context.RegisterClassMap<MarketRecordMap>();
-        _xrefs = mappingsCsv.GetRecords<Market>().ToDictionary(m => m.Name, m => m.Code);
+        _xrefs = mappingsCsv.GetRecords<MarketRecord>().ToDictionary(m => m.Name, m => m.Code);
 
         using var opsPlanReader = new StreamReader(OuputCSV);
         using var opsPlanCsv = new CsvReader(opsPlanReader, CultureInfo.InvariantCulture);
