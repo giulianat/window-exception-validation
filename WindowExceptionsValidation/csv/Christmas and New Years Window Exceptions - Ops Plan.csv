@@ -1,4 +1,4 @@
-old_window_id,FC_Name,Zone_Code,City_Name,Original_Delivery_Day,Exception_Delivery_Day,Original_Delivery_Date,Exception_Delivery_Date,Is_Employee_Zone
+old_window_id,FC Name,Zone Code,City Name,Original Delivery Day,Exception Delivery Day,Original Delivery Date,Exception Delivery Date,Is Employee Zone
 f828c6b4-f54d-4d82-a0f8-d59d2070e73b,PNW,BLI,Bellingham,Monday,Tuesday,1,2,FALSE
 7a182ad1-d26b-4b87-b5c1-7b385bf30b9f,PNW,BDN,Bend,Monday,Tuesday,1,2,FALSE
 5abe3c19-d5ca-4305-b723-94593cdeee93,PNW,BOI,Boise,Monday,Tuesday,1,2,FALSE
@@ -116,3 +116,20 @@ f08ce25e-10e0-4e8b-9fc5-d0596e0740ac,LA,SLC,Salt Lake City,Thursday,Friday,4,5,F
 315660f1-5296-4625-b629-5b87eb117817,LA,PHX,Phoenix,Thursday,Friday,4,5,FALSE
 c69d2972-d98c-4715-a23f-3396f03840ce,LA,TUS,Tucson,Thursday,Friday,4,5,FALSE
 49de0fc8-ca54-48f8-9571-e22c756622df,LA,SBA,Santa Barbara,Thursday,Friday,4,5,FALSE
+41a66bac-422b-4411-b7d2-637cfb2ae02c,PNW,BLI,Bellingham,Monday,Tuesday,1,2,TRUE
+d8b59966-0894-4457-b294-0179787d7f4d,PNW,PDX,Portland,Monday,Tuesday,1,2,TRUE
+7dd21c4c-4c41-4b62-b006-6fe0cb899d1a,PNW,SEA,Seattle,Monday,Tuesday,1,2,TRUE
+87cde284-0269-4feb-8464-e804fb47d321,BWI,BWI,Severn,Monday,Tuesday,1,2,TRUE
+3225c6e7-fb44-4d3b-b338-4a7d65c9ec0e,PNW,SPK,Spokane,Tuesday,Wednesday,2,3,TRUE
+3270e6bc-6da1-433f-b81e-85d06bdecbd6,LA,DEN,Denver,Tuesday,Wednesday,2,3,TRUE
+0a01df79-858e-47d8-94b2-aa94a9410be4,LA,LAX,Los Angeles,Friday,Thursday,5,4,TRUE
+bece9e65-e190-4995-96fb-0e943223e502,PNW,BOI,Boise,Thursday,Friday,4,5,TRUE
+d9e7246a-a190-48a5-90a6-20cb9f5e6011,PNW,OLM,Olympia,Thursday,Friday,4,5,TRUE
+605c3eb6-ac05-43ef-a6e5-e505349d87ea,LA,LAS,Las Vegas,Thursday,Friday,4,5,TRUE
+acb5bb3f-e1a7-4c43-b0ca-a74bee74e7ae,LA,SLC,Salt Lake City,Thursday,Friday,4,5,TRUE
+d9bdce04-200d-4f8a-b0c4-d865cbe1120d,LA,PHX,Phoenix,Thursday,Friday,4,5,TRUE
+82928dc1-fd2a-4016-9a45-ea65c5de37c8,BWI,HAR,Hartford,Tuesday,Wednesday,2,3,TRUE
+4e707579-05e7-4443-96be-0272c7e5b773,BWI,NVA,Northern Virginia,Tuesday,Wednesday,2,3,TRUE
+8442a5c5-3493-47f1-9d00-e0a790296261,BWI,EWR,Newark,Monday,Wednesday,1,3,TRUE
+b686fa2d-e3c1-4933-a67b-a1b4b8c11259,BWI,MOC,Montgomery County,Friday,Wednesday,5,3,TRUE
+3611b779-4f40-4f9e-a47b-063855a3ad60,BWI,BOS,Boston,Tuesday,Wednesday,2,3,TRUE
