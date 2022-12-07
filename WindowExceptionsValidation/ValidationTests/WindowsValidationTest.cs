@@ -56,4 +56,37 @@ public class WindowsValidationTest
 
         Assert.That(numberOfStartDaysOnAHoliday, Is.Zero);
     }
+
+    [Test]
+    public void ShouldHaveAscendingDates()
+    {
+        Dictionary<int, DateOnly> weekMap = new()
+        {
+            { 0, new DateOnly(2022, 12, 25) },
+            { 1, new DateOnly(2022, 12, 26) },
+            { 2, new DateOnly(2022, 12, 27) },
+            { 3, new DateOnly(2022, 12, 28) },
+            { 4, new DateOnly(2022, 12, 29) },
+            { 5, new DateOnly(2022, 12, 30) },
+            { 6, new DateOnly(2022, 12, 31) }
+        };
+        
+        Assert.Multiple(() =>
+        {
+            foreach (var window in _windows)
+            {
+                var custoEnd = weekMap[window.customizationEndDay!.Value]
+                    .ToDateTime(TimeOnly.Parse(window.customizationEndTime));
+                var dispatch = weekMap[window.dispatchDay!.Value]
+                    .ToDateTime(TimeOnly.Parse(window.dispatchTime));
+                var deliveryStart = weekMap[window.startDay!.Value]
+                    .ToDateTime(TimeOnly.Parse(window.startTime));
+                var deliveryEnd = weekMap[window.endDay!.Value]
+                    .ToDateTime(TimeOnly.Parse(window.endTime));
+                
+                Assert.That((dispatch - custoEnd).TotalHours, Is.LessThanOrEqualTo(6), $"Dispatch Comparison for {window.name}");
+                Assert.That(deliveryStart, Is.LessThan(deliveryEnd), $"Delivery Comparison for {window.name}");
+            }
+        });
+    }
 }

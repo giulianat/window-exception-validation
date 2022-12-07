@@ -11,7 +11,7 @@ public record WindowsRecord
     public string customizationStartTime { get; set; }
     public int? customizationEndDay { get; set; }
     public string customizationEndTime { get; set; }
-    public string dispatchDay { get; set; }
+    public int? dispatchDay { get; set; }
     public string dispatchTime { get; set; }
     public int? startDay { get; set; }
     public string startTime { get; set; }

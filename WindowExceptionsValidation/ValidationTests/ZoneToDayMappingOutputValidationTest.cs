@@ -24,8 +24,6 @@ public class ZoneToDayMappingOutputValidationTest
     private const string ZoneToDayCsv =
         @"./csv/Christmas and New Years Window Exceptions - Zone to Day Mapping Output.csv";
 
-    private static readonly string[] Holidays = { "Christmas", "New Years" };
-
     private static readonly Dictionary<int, DateOnly> ChristmasWeekMap = new()
     {
         { 0, new DateOnly(2022, 12, 25) },
@@ -187,9 +185,9 @@ public class ZoneToDayMappingOutputValidationTest
                 
                 Assert.That(correspondingZones.Count, Is.EqualTo(2));
                 Assert.That(correspondingZones[0].Holiday, Is.EqualTo("Christmas"));
-                Assert.That(correspondingZones[0].CustoOpenDateTime, Is.EqualTo(christmasCustoOpenDate));
+                Assert.That(correspondingZones[0].CustoOpenDateTime, Is.EqualTo(christmasCustoOpenDate), $"Christmas mismatch for {zonesRecord.name}");
                 Assert.That(correspondingZones[1].Holiday, Is.EqualTo("New Years"));
-                Assert.That(correspondingZones[1].CustoOpenDateTime, Is.EqualTo(newYearsCustoOpenDate));
+                Assert.That(correspondingZones[1].CustoOpenDateTime, Is.EqualTo(newYearsCustoOpenDate), $"New Years mismatch for {zonesRecord.name}");
             }
         });
     }
@@ -225,9 +223,9 @@ public class ZoneToDayMappingOutputValidationTest
 
                 Assert.That(correspondingZones.Count, Is.EqualTo(2));
                 Assert.That(correspondingZones[0].Holiday, Is.EqualTo("Christmas"));
-                Assert.That(correspondingZones[0].CustoCloseDateTime, Is.EqualTo(christmasCustoClosedDate));
+                Assert.That(correspondingZones[0].CustoCloseDateTime, Is.EqualTo(christmasCustoClosedDate), $"Christmas mismatch for {zonesRecord.name}");
                 Assert.That(correspondingZones[1].Holiday, Is.EqualTo("New Years"));
-                Assert.That(correspondingZones[1].CustoCloseDateTime, Is.EqualTo(newYearsCustoClosedDate));
+                Assert.That(correspondingZones[1].CustoCloseDateTime, Is.EqualTo(newYearsCustoClosedDate), $"New Years mismatch for {zonesRecord.name}");
             }
         });
     }
