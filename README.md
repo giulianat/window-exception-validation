@@ -9,3 +9,11 @@ This repository is full of NUnit tests that validate and summarize each step of 
 1. Exceptions - Exceptions that link existing windows to their exception window. Also contains text shown to the user, and the days the exception is in effect
 1. LCM - for LCM communications, rather than using their existing workbook given it is out of date.
 
+## TODOs
+
+### Manual Changes to tests
+Anything manual can evolve to be configurable in a CSV or INI file
+- CSV urls 
+- `ExceptionsValidationTest` and `WindowsValidationTest` has a list of holidays that we should not be delivering on 
+- `ZoneToDayMappingOutputValidationTest` has a a list of days for Christmas week and New Years week 
+- `ZoneToDayMappingOutputValidationTest` is very specific to Christmas and New Years 
