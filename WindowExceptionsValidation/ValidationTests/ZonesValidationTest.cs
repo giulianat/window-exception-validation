@@ -10,31 +10,21 @@ public class ZonesValidationTest
     [SetUp]
     public void SetUp()
     {
-        using var currentDataReader = new StreamReader(CurrentDataCSV);
+        using var currentDataReader = new StreamReader(CurrentDataCsv);
         using var currentDataCsv = new CsvReader(currentDataReader, CultureInfo.InvariantCulture);
 
         currentDataCsv.Context.RegisterClassMap<CurrentDataRecordMap>();
         _currentData = currentDataCsv.GetRecords<CurrentDataRecord>().ToList();
-        
-        using var opsPlanReader = new StreamReader(OuputCSV);
-        using var opsPlanCsv = new CsvReader(opsPlanReader, CultureInfo.InvariantCulture);
-
-        _plan = opsPlanCsv.GetRecords<OpsPlanRecord>().ToList();
     }
 
-    private List<CurrentDataRecord> _currentData;
-    private Dictionary<string, string> _xrefs;
-    private List<OpsPlanRecord> _plan;
-    private const string CurrentDataCSV = @"./csv/Christmas and New Years Window Exceptions - Current Data.csv";
-    private const string ZonesCSV = @"./csv/Christmas and New Years Window Exceptions - Zones.csv";
-
-    private const string OuputCSV =
-        @"./csv/Patrick's Copy of Xmas and NY Holiday Market_Zone Exception Tool - Output corrected.csv";
+    private List<CurrentDataRecord> _currentData = new();
+    private const string CurrentDataCsv = @"./csv/Christmas and New Years Window Exceptions - Current Data.csv";
+    private const string ZonesCsv = @"./csv/Christmas and New Years Window Exceptions - Zones.csv";
 
     [Test]
     public void ShouldHaveCorrectFulfillmentCenter()
     {
-        using var reader = new StreamReader(ZonesCSV);
+        using var reader = new StreamReader(ZonesCsv);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var actualRecords = csv.GetRecords<ZonesRecord>();
 
@@ -51,7 +41,7 @@ public class ZonesValidationTest
     {
         var marketDictionary = Parser.GetMarketCodeToNameMap();
         var dayOfWeekDictionary = Parser.GetDayOfWeekMap();
-        using var reader = new StreamReader(ZonesCSV);
+        using var reader = new StreamReader(ZonesCsv);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var actualRecords = csv.GetRecords<ZonesRecord>();
 
@@ -69,7 +59,7 @@ public class ZonesValidationTest
     public void ShouldHaveNameBasedOnMovedAndReferencedZoneIds()
     {
         var dayOfWeekDictionary = Parser.GetDayOfWeekMap();
-        using var reader = new StreamReader(ZonesCSV);
+        using var reader = new StreamReader(ZonesCsv);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var actualRecords = csv.GetRecords<ZonesRecord>();
 
@@ -87,7 +77,7 @@ public class ZonesValidationTest
     [Test]
     public void ShouldHaveCorrectZoneInformation()
     {
-        using var reader = new StreamReader(ZonesCSV);
+        using var reader = new StreamReader(ZonesCsv);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var actualRecords = csv.GetRecords<ZonesRecord>();
 

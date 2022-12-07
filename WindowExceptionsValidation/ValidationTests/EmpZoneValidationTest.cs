@@ -1,8 +1,6 @@
 using System.Globalization;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using CsvHelper;
-using NUnit.Framework;
 
 namespace WindowExceptionsValidation.ValidationTests;
 
@@ -11,7 +9,7 @@ public class EmpZoneValidationTest
 {
     private List<EmpZoneRecord> _empZones = new();
 
-    private static Dictionary<string, string> _cityNameExceptions = new()
+    private static readonly Dictionary<string, string> CityNameExceptions = new()
     {
         { "SEA", "Seattle" },
         { "HAR", "Hartford" },
@@ -33,9 +31,9 @@ public class EmpZoneValidationTest
         _empZones = csv.GetRecords<EmpZoneRecord>()
             .Select(z =>
             {
-                if (_cityNameExceptions.ContainsKey(z.MarketCode))
+                if (CityNameExceptions.ContainsKey(z.MarketCode))
                 {
-                    z.Nickname = _cityNameExceptions[z.MarketCode];
+                    z.Nickname = CityNameExceptions[z.MarketCode];
                 }
 
                 return z;
@@ -105,7 +103,7 @@ public class EmpZoneValidationTest
                 var correspondingZone = _empZones.Find(z => z.MarketCode == record.Zone_Code);
                 
                 Assert.That(record.Original_Delivery_Day, Is.EqualTo((DayOfWeek)correspondingZone?.StartDay));
-                Assert.That(record.Original_Delivery_Date, Is.EqualTo(correspondingZone?.StartDay));
+                Assert.That(record.Original_Delivery_Date, Is.EqualTo(correspondingZone.StartDay));
             }
         });
     }
