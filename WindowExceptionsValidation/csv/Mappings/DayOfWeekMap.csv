@@ -1,0 +1,8 @@
+Day_Of_Week,Numeric_Day_Of_Week,Abbreviation
+Monday,1,Mon
+Tuesday,2,Tues
+Wednesday,3,Wed
+Thursday,4,Thurs
+Friday,5,Fri
+Saturday,6,Sat
+Sunday,0,Sun

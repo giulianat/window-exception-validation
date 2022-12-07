@@ -2,17 +2,21 @@ using CsvHelper.Configuration;
 
 namespace WindowExceptionsValidation;
 
-public record MarketRecord
+public record MarketMapRecord
 {
-    public string Code { get; set; }
-    public string Name { get; set; }
+    public string Market_Code { get; set; }
+    public string Market_Name { get; set; }
 }
 
-public sealed class MarketRecordMap : ClassMap<MarketRecord>
+public record FulfillmentCenterMapRecord
 {
-    public MarketRecordMap()
-    {
-        Map(m => m.Code).Name("Market Code").NameIndex(0);
-        Map(m => m.Name).Name("Market Name").NameIndex(0);
-    }
+    public string FC_ID { get; set; }
+    public string FC_Name { get; set; }
+}
+
+public record DayOfWeekMapRecord
+{
+    public string Day_Of_Week { get; set; }
+    public string Numeric_Day_Of_Week { get; set; }
+    public string Abbreviation { get; set; }
 }

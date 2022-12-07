@@ -21,6 +21,9 @@
         <None Update="csv\*.csv">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="csv\Mappings\*.csv">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>
