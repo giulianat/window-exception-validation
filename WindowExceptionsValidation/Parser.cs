@@ -52,6 +52,29 @@ public static class Parser
             .ToList();
     }
 
+    public static IEnumerable<OpsPlanRecord> ParseImportZoneEmpRecords(string filePath)
+    {
+        using var reader = new StreamReader(filePath);
+        var unused = reader.ReadLine();
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+        return csv.GetRecords<ImportZoneRecord>()
+            .SelectMany(r =>
+            {
+                var records = new List<OpsPlanRecord?>
+                {
+                    CreateEmpRecord(r.Sunday, DayOfWeek.Sunday),
+                    CreateEmpRecord(r.Monday, DayOfWeek.Monday),
+                    CreateEmpRecord(r.Tuesday, DayOfWeek.Tuesday),
+                    CreateEmpRecord(r.Wednesday, DayOfWeek.Wednesday),
+                    CreateEmpRecord(r.Thursday, DayOfWeek.Thursday),
+                    CreateEmpRecord(r.Friday, DayOfWeek.Friday)
+                };
+                return records;
+            }).OfType<OpsPlanRecord>()
+            .ToList();
+    }
+
     public static IEnumerable<OpsPlanRecord> ParseImportZoneWithChangesToDeliveryDay(string filePath)
     {
         return ParseImportZone(filePath).Where(r => r.Exception_Delivery_Date != r.Original_Delivery_Date);
@@ -73,6 +96,24 @@ public static class Parser
             City_Name = city,
             Original_Delivery_Day = originalDay,
             Original_Delivery_Date = (int)originalDay,
+            Exception_Delivery_Day = exceptionDeliveryDay,
+            Exception_Delivery_Date = (int)exceptionDeliveryDay
+        };
+    }
+    
+    private static OpsPlanRecord? CreateEmpRecord(string record, DayOfWeek exceptionDeliveryDay)
+    {
+        if (string.IsNullOrEmpty(record)) return null;
+        var (city, originalDeliveryDay) = record.Split(" - ") switch
+        {
+            var a => (a[0], a[1])
+        };
+
+        if (originalDeliveryDay != "EMP") return null;
+
+        return new OpsPlanRecord
+        {
+            City_Name = city,
             Exception_Delivery_Day = exceptionDeliveryDay,
             Exception_Delivery_Date = (int)exceptionDeliveryDay
         };

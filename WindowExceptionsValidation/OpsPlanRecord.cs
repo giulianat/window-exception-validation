@@ -2,6 +2,8 @@ namespace WindowExceptionsValidation;
 
 public struct OpsPlanRecord : IEquatable<OpsPlanRecord>
 {
+    public string FC_Name	 { get; set; }
+    public string Zone_Code { get; set; }
     public string City_Name { get; set; }
     public DayOfWeek Original_Delivery_Day { get; set; }
     public DayOfWeek Exception_Delivery_Day { get; set; }
