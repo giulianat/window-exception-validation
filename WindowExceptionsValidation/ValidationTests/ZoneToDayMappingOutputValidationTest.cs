@@ -210,14 +210,16 @@ public class ZoneToDayMappingOutputValidationTest
                     .Distinct()
                     .ToList();
                 var correspondingWindow = _windows.First(w => w.zoneId == zonesRecord.zoneId);
+                var custoStartDayOfWeek = correspondingWindow.customizationStartDay!.Value;
                 var custoClosedDayOfWeek = correspondingWindow.customizationEndDay!.Value;
+                var weekOffset = custoStartDayOfWeek > custoClosedDayOfWeek ? 0 : -7;
                 var custoClosedTime = correspondingWindow.customizationEndTime;
                 var christmasCustoClosedDate = ChristmasWeekMap[custoClosedDayOfWeek]
-                    .AddDays(-7)
+                    .AddDays(weekOffset)
                     .ToDateTime(TimeOnly.Parse(custoClosedTime))
                     .ToString("dddd, MM/dd - hh:mm tt");
                 var newYearsCustoClosedDate = NewYearsWeekMap[custoClosedDayOfWeek]
-                    .AddDays(-7)
+                    .AddDays(weekOffset)
                     .ToDateTime(TimeOnly.Parse(custoClosedTime))
                     .ToString("dddd, MM/dd - hh:mm tt");
 
