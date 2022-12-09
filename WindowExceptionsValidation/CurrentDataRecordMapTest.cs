@@ -32,7 +32,7 @@ public class CurrentDataRecordMapTest
         Assert.That(firstRow.Window.StartTime, Is.EqualTo("5:00:00"));
         Assert.That(firstRow.Window.EndDay, Is.EqualTo("1"));
         Assert.That(firstRow.Window.EndTime, Is.EqualTo("21:00:00"));
-        Assert.That(firstRow.Window.DispatchDay, Is.EqualTo("6"));
+        Assert.That(firstRow.Window.DispatchDay, Is.EqualTo(6));
         Assert.That(firstRow.Window.DispatchTime, Is.EqualTo("18:00:00"));
         Assert.That(firstRow.Window.CustomizationStartDay, Is.EqualTo("4"));
         Assert.That(firstRow.Window.CustomizationStartTime, Is.EqualTo("15:00:00"));

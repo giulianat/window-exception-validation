@@ -233,6 +233,97 @@ public class ZoneToDayMappingOutputValidationTest
     }
 
     [Test]
+    public void ShouldContainMaxDispatchTimeForCombinedZones()
+    {
+        using var reader = new StreamReader(ZoneToDayCsv);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+        csv.Context.RegisterClassMap<ZoneToDayMappingOutputRecordMap>();
+        var expectedRecords = csv.GetRecords<ZoneToDayMappingOutputRecord>().ToList();
+
+        Assert.Multiple(() =>
+        {
+            foreach (var zonesRecord in _zones)
+            {
+                var actualOutputForZone = expectedRecords
+                    .Where(r => r.ZoneId == zonesRecord.zoneId)
+                    .Distinct()
+                    .ToList();
+                var christmasWindows = _windows.Where(w => w.zoneId == zonesRecord.zoneId && w.messageToUser.Contains("christmas")).ToList();
+                var expectedChristmasDispatchDay = christmasWindows.Select(w =>
+                    {
+                        var custoStartDayOfWeek = w.customizationStartDay!.Value;
+                        var custoClosedDayOfWeek = w.customizationEndDay!.Value;
+                        var weekOffset = custoStartDayOfWeek > custoClosedDayOfWeek ? 0 : -7;
+                        
+                        return ChristmasWeekMap[w.dispatchDay!.Value]
+                            .AddDays(weekOffset)
+                            .ToDateTime(TimeOnly.Parse(w.dispatchTime));
+                    })
+                    .Max()
+                    .ToString("dddd, MM/dd - hh:mm tt");
+                var newYearsWindows = _windows.Where(w => w.zoneId == zonesRecord.zoneId && w.messageToUser.Contains("new-years")).ToList();
+                var expectedNewYearsDispatchDay = newYearsWindows.Select(w =>
+                    {
+                        var custoStartDayOfWeek = w.customizationStartDay!.Value;
+                        var custoClosedDayOfWeek = w.customizationEndDay!.Value;
+                        var weekOffset = custoStartDayOfWeek > custoClosedDayOfWeek ? 0 : -7;
+                        
+                        return NewYearsWeekMap[w.dispatchDay!.Value]
+                            .AddDays(weekOffset)
+                            .ToDateTime(TimeOnly.Parse(w.dispatchTime));
+                    })
+                    .Max()
+                    .ToString("dddd, MM/dd - hh:mm tt");
+
+                Assert.That(actualOutputForZone.Count, Is.EqualTo(2));
+                Assert.That(actualOutputForZone[0].Holiday, Is.EqualTo("Christmas"));
+                Assert.That(actualOutputForZone[0].DispatchDateTime, Is.EqualTo(expectedChristmasDispatchDay), $"Christmas mismatch for {zonesRecord.name}");
+                Assert.That(actualOutputForZone[1].Holiday, Is.EqualTo("New Years"));
+                Assert.That(actualOutputForZone[1].DispatchDateTime, Is.EqualTo(expectedNewYearsDispatchDay), $"New Years mismatch for {zonesRecord.name}");
+            }
+        });
+    }
+    
+    [Test]
+    public void ShouldHaveAscendingDates()
+    {
+        using var reader = new StreamReader(ZoneToDayCsv);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+        csv.Context.RegisterClassMap<ZoneToDayMappingOutputRecordMap>();
+        var actualRecords = csv.GetRecords<ZoneToDayMappingOutputRecord>().ToList();
+        
+        Assert.Multiple(() =>
+        {
+            foreach (var zoneOutput in actualRecords)
+            {
+                var custoStart = ConvertToDateTime(zoneOutput.CustoOpenDateTime);
+                var custoEnd = ConvertToDateTime(zoneOutput.CustoCloseDateTime);
+                var dispatch = ConvertToDateTime(zoneOutput.DispatchDateTime);
+                var pack = DateTime.Parse(zoneOutput.PackDate);
+                var delivery = DateTime.Parse(zoneOutput.DeliveryDate);
+                
+                Assert.That(custoStart, Is.LessThan(custoEnd), $"Custo Comparison for {zoneOutput.ZoneName}");
+                Assert.That(custoEnd, Is.LessThan(dispatch), $"Dispatch Comparison for {zoneOutput.ZoneName}");
+                Assert.That(dispatch, Is.LessThan(pack), $"Pack Comparison for {zoneOutput.ZoneName}");
+                Assert.That(pack, Is.LessThan(delivery), $"Delivery Comparison for {zoneOutput.ZoneName}");
+            }
+        });
+    }
+
+    private static DateTime ConvertToDateTime(string datetime)
+    {
+        var dateAndTime = datetime.Split(" - ");
+        var day = dateAndTime[0];
+        var year = day.Contains("12/") ? "/22" : "/23";
+        var time = dateAndTime[1];
+        var dateTimeWithYear = day + year + " - " + time;
+        
+        return DateTime.ParseExact(dateTimeWithYear, "dddd, MM/dd/yy - hh:mm tt", CultureInfo.InvariantCulture);
+    }
+
+    [Test]
     public void ShouldGenerateExpectedCsv()
     {
         List<ZoneToDayMappingOutputRecord> records = new();

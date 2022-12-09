@@ -24,7 +24,25 @@ public static class Parser
             .GetRecords<DayOfWeekMapRecord>()
             .ToDictionary(m => m.Numeric_Day_Of_Week, m => m);
     }
-    
+
+    public static IEnumerable<ZonesRecord> GetZones()
+    {
+        using var reader = new StreamReader(@"./csv/Christmas and New Years Window Exceptions - Zones.csv");
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        
+        return csv.GetRecords<ZonesRecord>().ToList();
+    }
+
+    public static IEnumerable<CurrentDataRecord> GetCurrentData()
+    {
+        using var currentDataReader = new StreamReader(@"./csv/Christmas and New Years Window Exceptions - Current Data.csv");
+        using var currentDataCsv = new CsvReader(currentDataReader, CultureInfo.InvariantCulture);
+        
+        currentDataCsv.Context.RegisterClassMap<CurrentDataRecordMap>();
+        
+        return currentDataCsv.GetRecords<CurrentDataRecord>().ToList();
+    }
+
     public static IEnumerable<ImportZoneRecord> ParseImportZone(string[] allLines)
     {
         var dataLines = allLines.Skip(2).ToArray();

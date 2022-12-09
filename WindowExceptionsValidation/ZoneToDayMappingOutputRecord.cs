@@ -11,6 +11,7 @@ public record ZoneToDayMappingOutputRecord
     public string DeliveryDate { get; set; }
     public string CustoOpenDateTime { get; set; }
     public string CustoCloseDateTime { get; set; }
+    public string DispatchDateTime { get; set; }
 }
 
 public sealed class ZoneToDayMappingOutputRecordMap : ClassMap<ZoneToDayMappingOutputRecord>
@@ -24,5 +25,6 @@ public sealed class ZoneToDayMappingOutputRecordMap : ClassMap<ZoneToDayMappingO
         Map(m => m.DeliveryDate).Name("Delivery Date");
         Map(m => m.CustoOpenDateTime).Name("Custo Open Date / Time");
         Map(m => m.CustoCloseDateTime).Name("Custo Close Date / Time");
+        Map(m => m.DispatchDateTime).Name("Dispatch Date / Time");
     }
 }
