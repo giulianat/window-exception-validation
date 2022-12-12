@@ -11,7 +11,8 @@ public record ZonesRecord
     public string timezone { get; set; }
     public string zonePickupAddressId { get; set; }
     public string expectedServiceTimeInMinutes { get; set; }
-    public string isLineHaul { get; set; }
+    public bool isLineHaul { get; set; }
     public string pickupTime { get; set; }
     public string marketCode { get; set; }
+    public string transitTime { get; set; }
 }

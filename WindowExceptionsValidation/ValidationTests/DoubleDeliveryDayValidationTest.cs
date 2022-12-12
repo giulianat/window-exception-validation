@@ -9,8 +9,7 @@ public class DoubleDeliveryDayValidationTest
 {
     private const string ImportZoneCsv = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - Import Zone.csv";
 
-    private const string OpsPlanCsv =
-        @"./csv/Patrick's Copy of Xmas and NY Holiday Market_Zone Exception Tool - Output corrected.csv";
+    private const string OpsPlanCsv = @"./csv/Christmas and New Years Window Exceptions - Ops Plan.csv";
 
     [Test]
     public void ShouldIdentifyDoubleDeliveryDaysGroupedByDay()
@@ -40,6 +39,7 @@ public class DoubleDeliveryDayValidationTest
     {
         using var reader = new StreamReader(OpsPlanCsv);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
 
         var opsPlan = csv
             .GetRecords<OpsPlanRecord>()

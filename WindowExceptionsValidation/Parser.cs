@@ -29,18 +29,29 @@ public static class Parser
     {
         using var reader = new StreamReader(@"./csv/Christmas and New Years Window Exceptions - Zones.csv");
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        
+
         return csv.GetRecords<ZonesRecord>().ToList();
     }
 
     public static IEnumerable<CurrentDataRecord> GetCurrentData()
     {
-        using var currentDataReader = new StreamReader(@"./csv/Christmas and New Years Window Exceptions - Current Data.csv");
+        const string path = @"./csv/Christmas and New Years Window Exceptions - Current Data.csv";
+        using var currentDataReader = new StreamReader(path);
         using var currentDataCsv = new CsvReader(currentDataReader, CultureInfo.InvariantCulture);
-        
+
         currentDataCsv.Context.RegisterClassMap<CurrentDataRecordMap>();
-        
+
         return currentDataCsv.GetRecords<CurrentDataRecord>().ToList();
+    }
+
+    public static IEnumerable<EmpZoneRecord> GetEmpZones()
+    {
+        const string path = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - EMP Zone - GB.csv";
+        using var reader = new StreamReader(path);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        csv.Context.RegisterClassMap<EmpZoneRecordMap>();
+
+        return csv.GetRecords<EmpZoneRecord>().ToList();
     }
 
     public static IEnumerable<ImportZoneRecord> ParseImportZone(string[] allLines)
@@ -138,7 +149,7 @@ public static class Parser
             Exception_Delivery_Date = (int)exceptionDeliveryDay
         };
     }
-    
+
     private static OpsPlanRecord? CreateEmpRecord(string record, DayOfWeek exceptionDeliveryDay)
     {
         if (string.IsNullOrEmpty(record)) return null;

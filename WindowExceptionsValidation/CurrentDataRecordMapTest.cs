@@ -63,7 +63,7 @@ public class CurrentDataRecordMapTest
         Assert.That(firstRow.Zone.Timezone, Is.EqualTo("America/Chicago"));
         Assert.That(firstRow.Zone.Created, Is.EqualTo("2018-08-07 14:17:21.817 -0500"));
         Assert.That(firstRow.Zone.Updated, Is.EqualTo("2021-08-02 11:25:03.657 -0500"));
-        Assert.That(firstRow.Zone.IsLineHaul, Is.EqualTo("FALSE"));
+        Assert.That(firstRow.Zone.IsLineHaul, Is.EqualTo(false));
         Assert.That(firstRow.Zone.PickupTime, Is.EqualTo("8:30:00"));
         Assert.That(firstRow.Zone.TransitTime, Is.EqualTo("0:00:00"));
         Assert.That(firstRow.Zone.MarketCode, Is.EqualTo("CHI"));

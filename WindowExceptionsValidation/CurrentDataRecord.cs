@@ -22,7 +22,7 @@ public record Zone
     public string Timezone { get; set; }
     public string Created { get; set; }
     public string Updated { get; set; }
-    public string IsLineHaul { get; set; }
+    public bool IsLineHaul { get; set; }
     public string PickupTime { get; set; }
     public string TransitTime { get; set; }
     public string MarketCode { get; set; }

@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text.Json;
 using CsvHelper;
 
 namespace WindowExceptionsValidation.ValidationTests;
@@ -46,5 +47,16 @@ public class ExceptionsValidationTest
             .Count(dow => Holidays.Select(h => h.DayOfWeek).Contains(dow));
 
         Assert.That(numberOfStartDaysOnAHoliday, Is.Zero);
+    }
+
+    [Test]
+    public void ShouldSummarizeUnchangedWindows()
+    {
+        var unchangedWindows = _exceptions
+            .Where(e => e.originalDeliveryDay == e.replacementDeliveryDay)
+            .Select(e => e.originalWindowId)
+            .ToList();
+
+        Assert.Pass(JsonSerializer.Serialize(unchangedWindows));
     }
 }
