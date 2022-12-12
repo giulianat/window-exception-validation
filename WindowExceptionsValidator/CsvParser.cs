@@ -62,6 +62,17 @@ public static class CsvParser
         return csv.GetRecords<ExceptionRecord>().ToList();
     }
 
+    public static IEnumerable<OpsPlanRecord> GetOpsPlans()
+    {
+        const string path = @"./csv/Christmas and New Years Window Exceptions - Ops Plan.csv";
+        using var reader = new StreamReader(path);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
+
+        return csv.GetRecords<OpsPlanRecord>().ToList();
+        
+    }
+
     public static IEnumerable<ImportZoneRecord> ParseImportZone(string[] allLines)
     {
         var dataLines = allLines.Skip(2).ToArray();

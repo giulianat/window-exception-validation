@@ -17,11 +17,7 @@ public class OpsPlanValidationTests
     [Test]
     public void ShouldHaveExpectedNumberOfWindowExceptions()
     {
-        using var reader = new StreamReader(FilePathToBeValidated);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-
-        var actualOpsPlan = csv.GetRecords<OpsPlanRecord>()
+        var actualOpsPlan = CsvParser.GetOpsPlans()
             .Where(p => !p.Is_Employee_Zone)
             .ToList();
 
@@ -33,11 +29,7 @@ public class OpsPlanValidationTests
     [Test]
     public void ShouldContainMatchingOutputForEachInput()
     {
-        using var reader = new StreamReader(FilePathToBeValidated);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-
-        var actualOpsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
+        var actualOpsPlan = CsvParser.GetOpsPlans().ToList();
 
         foreach (var record in _expectedOpsPlan) Assert.That(actualOpsPlan, Contains.Item(record));
     }
@@ -45,11 +37,7 @@ public class OpsPlanValidationTests
     [Test]
     public void ShouldHaveContentInAllColumns()
     {
-        using var reader = new StreamReader(FilePathToBeValidated);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-
-        var actualOpsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
+        var actualOpsPlan = CsvParser.GetOpsPlans().ToList();
 
         foreach (var record in actualOpsPlan)
         {
@@ -64,11 +52,7 @@ public class OpsPlanValidationTests
     [Test]
     public void ShouldNotContainDuplicates()
     {
-        using var reader = new StreamReader(FilePathToBeValidated);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-
-        var actualOpsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
+        var actualOpsPlan = CsvParser.GetOpsPlans().ToList();
 
         Assert.That(actualOpsPlan.GroupBy(r => r).Count(r => r.Count() > 1), Is.Zero);
     }
@@ -76,10 +60,7 @@ public class OpsPlanValidationTests
     [Test]
     public void ShouldNotContainUnchangedWindows()
     {
-        using var reader = new StreamReader(FilePathToBeValidated);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-        var opsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
+        var opsPlan = CsvParser.GetOpsPlans().ToList();
 
         var outputUnchangedByDay = opsPlan.Count(r => r.Exception_Delivery_Day == r.Original_Delivery_Day);
         var outputUnchangedByDate = opsPlan.Count(r => r.Exception_Delivery_Date == r.Original_Delivery_Date);
@@ -91,13 +72,10 @@ public class OpsPlanValidationTests
     [Test]
     public void ShouldMatchImportZoneTotals()
     {
-        var laxDupeThatShouldHaveBeenRemoved = 1;
+        const int laxDupeThatShouldHaveBeenRemoved = 1;
         var expectedEmpCount = CsvParser.GetEmpZones().Count(z => z.Original_Delivery_Day != z.Exception_Delivery_Day);
-        using var reader = new StreamReader(FilePathToBeValidated);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-
-        var actualEmpCount = csv.GetRecords<OpsPlanRecord>().Count(p => p.Is_Employee_Zone);
+        
+        var actualEmpCount = CsvParser.GetOpsPlans().Count(p => p.Is_Employee_Zone);
 
         Assert.That(actualEmpCount, Is.EqualTo(expectedEmpCount - laxDupeThatShouldHaveBeenRemoved));
     }
@@ -106,11 +84,10 @@ public class OpsPlanValidationTests
     public void ShouldSummarizeOpsPlan()
     {
         var contentSplitByLine = File.ReadAllLines(FilePathToBeValidated);
-        using var reader = new StreamReader(FilePathToBeValidated);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-        var opsPlan = csv.GetRecords<OpsPlanRecord>().ToList();
-        var unchanged = opsPlan.Where(r => r.Exception_Delivery_Day == r.Original_Delivery_Day);
+        var opsPlan = CsvParser.GetOpsPlans().ToList();
+        var unchanged = opsPlan
+            .Where(r => r.Exception_Delivery_Day == r.Original_Delivery_Day)
+            .ToList();
 
         Console.WriteLine($"{contentSplitByLine.Length} lines");
         Console.WriteLine($"{opsPlan.Count} total window exceptions");

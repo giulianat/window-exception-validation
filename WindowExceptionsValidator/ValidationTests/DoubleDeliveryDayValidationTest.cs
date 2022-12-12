@@ -37,12 +37,7 @@ public class DoubleDeliveryDayValidationTest
     [Test]
     public void ShouldIdentifyDoubleDeliveryDaysGroupedByOriginalZone()
     {
-        using var reader = new StreamReader(OpsPlanCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Context.RegisterClassMap<OpsPlanRecordMap>();
-
-        var opsPlan = csv
-            .GetRecords<OpsPlanRecord>()
+        var opsPlan = CsvParser.GetOpsPlans()
             .GroupBy(p => $"{p.City_Name} on {p.Exception_Delivery_Day}")
             .Where(g => g.Count() > 1)
             .ToDictionary(g => g.Key,
