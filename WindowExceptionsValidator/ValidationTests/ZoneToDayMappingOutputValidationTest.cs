@@ -9,14 +9,9 @@ public class ZoneToDayMappingOutputValidationTest
     [SetUp]
     public void Setup()
     {
-        using var zReader = new StreamReader(ZonesCsv);
-        using var zCsv = new CsvReader(zReader, CultureInfo.InvariantCulture);
-        _zones = zCsv.GetRecords<ZonesRecord>().ToList();
-
+        _zones = CsvParser.GetZones().ToList();
         _windows = CsvParser.GetWindows().ToList();
     }
-
-    private const string ZonesCsv = @"./csv/Christmas and New Years Window Exceptions - Zones.csv";
 
     private const string ZoneToDayCsv =
         @"./csv/Christmas and New Years Window Exceptions - Zone to Day Mapping Output.csv";

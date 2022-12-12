@@ -19,9 +19,7 @@ public class ZonesValidationTest
     [Test]
     public void ShouldHaveCorrectFulfillmentCenter()
     {
-        using var reader = new StreamReader(ZonesCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        var actualRecords = csv.GetRecords<ZonesRecord>();
+        var actualRecords = CsvParser.GetZones();
 
         foreach (var zone in actualRecords)
         {
@@ -36,9 +34,8 @@ public class ZonesValidationTest
     {
         var marketDictionary = CsvParser.GetMarketCodeToNameMap();
         var dayOfWeekDictionary = CsvParser.GetDayOfWeekMap();
-        using var reader = new StreamReader(ZonesCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        var actualRecords = csv.GetRecords<ZonesRecord>();
+        
+        var actualRecords = CsvParser.GetZones();
 
         foreach (var zone in actualRecords)
         {
@@ -55,9 +52,8 @@ public class ZonesValidationTest
     public void ShouldHaveNameBasedOnMovedAndReferencedZoneIds()
     {
         var dayOfWeekDictionary = CsvParser.GetDayOfWeekMap();
-        using var reader = new StreamReader(ZonesCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        var actualRecords = csv.GetRecords<ZonesRecord>();
+        
+        var actualRecords = CsvParser.GetZones();
 
         foreach (var zone in actualRecords)
         {
@@ -74,9 +70,7 @@ public class ZonesValidationTest
     [Test]
     public void ShouldHaveCorrectZoneInformation()
     {
-        using var reader = new StreamReader(ZonesCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        var actualRecords = csv.GetRecords<ZonesRecord>();
+        var actualRecords = CsvParser.GetZones();
 
         foreach (var zone in actualRecords)
         {
