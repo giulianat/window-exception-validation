@@ -81,6 +81,16 @@ public static class CsvParser
         return csv.GetRecords<WindowsRecord>().ToList();
     }
 
+    public static IEnumerable<ZoneToDayMappingOutputRecord> GetZoneToDayMappingOutput()
+    {
+        const string path = @"./csv/Christmas and New Years Window Exceptions - Zone to Day Mapping Output.csv";
+        using var reader = new StreamReader(path);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        csv.Context.RegisterClassMap<ZoneToDayMappingOutputRecordMap>();
+        
+        return csv.GetRecords<ZoneToDayMappingOutputRecord>().ToList();
+    }
+
     public static IEnumerable<ImportZoneRecord> ParseImportZone(string[] allLines)
     {
         var dataLines = allLines.Skip(2).ToArray();
