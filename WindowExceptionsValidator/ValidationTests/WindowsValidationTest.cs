@@ -60,8 +60,8 @@ public class WindowsValidationTest
     [Test]
     public void ShouldDispatchOnLatestDispatchDayForDoubleDeliveries()
     {
-        var currentData = Parser.GetCurrentData().ToList();
-        var combinedZones = Parser.GetZones().ToList();
+        var currentData = CsvParser.GetCurrentData().ToList();
+        var combinedZones = CsvParser.GetZones().ToList();
         var doubleDeliveryWindows = _windows
             .GroupBy(w => w.zoneId, w => w)
             .Where(g => g.Count() > 2)

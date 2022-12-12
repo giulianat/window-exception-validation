@@ -3,7 +3,7 @@ using CsvHelper;
 
 namespace WindowExceptionsValidation;
 
-public static class Parser
+public static class CsvParser
 {
     public static Dictionary<string, string> GetMarketCodeToNameMap()
     {

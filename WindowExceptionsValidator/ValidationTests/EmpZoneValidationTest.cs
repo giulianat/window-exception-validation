@@ -8,7 +8,7 @@ public class EmpZoneValidationTest
     [SetUp]
     public void Setup()
     {
-        _empZones = Parser.GetEmpZones()
+        _empZones = CsvParser.GetEmpZones()
             .Select(z =>
             {
                 if (CityNameExceptions.ContainsKey(z.MarketCode)) z.Nickname = CityNameExceptions[z.MarketCode];
@@ -38,7 +38,7 @@ public class EmpZoneValidationTest
     [Test]
     public void ShouldPlanForAllEmpRecords()
     {
-        var empOpsPlan = Parser.GetEmpZones().ToList();
+        var empOpsPlan = CsvParser.GetEmpZones().ToList();
 
         Assert.Multiple(() =>
         {
@@ -56,7 +56,7 @@ public class EmpZoneValidationTest
     [Test]
     public void ShouldHaveCorrectLocationInformationForEachMarket()
     {
-        var empOpsPlan = Parser.GetEmpZones().ToList();
+        var empOpsPlan = CsvParser.GetEmpZones().ToList();
 
         Assert.Multiple(() =>
         {
@@ -75,7 +75,7 @@ public class EmpZoneValidationTest
     [Test]
     public void ShouldContainOriginalDeliveryInformation()
     {
-        var empOpsPlan = Parser.GetEmpZones().ToList();
+        var empOpsPlan = CsvParser.GetEmpZones().ToList();
 
         Assert.Multiple(() =>
         {
@@ -92,8 +92,8 @@ public class EmpZoneValidationTest
     [Test]
     public void ShouldSummarizeMismatchedInformation()
     {
-        var empOpsPlan = Parser.GetEmpZones().ToList();
-        var importZones = Parser.ParseImportZoneEmpRecords(ImportZoneCsv).Distinct().ToList();
+        var empOpsPlan = CsvParser.GetEmpZones().ToList();
+        var importZones = CsvParser.ParseImportZoneEmpRecords(ImportZoneCsv).Distinct().ToList();
         var plannedCities = empOpsPlan.Select(p => p.City_Name).ToList();
         var importZoneCities = importZones.Select(i => i.City_Name).ToList();
         var plansNotInImportZone = plannedCities.Except(importZoneCities);
@@ -110,8 +110,8 @@ public class EmpZoneValidationTest
     [Test]
     public void ShouldContainExceptionDeliveryInformation()
     {
-        var importZones = Parser.ParseImportZoneEmpRecords(ImportZoneCsv).Distinct().ToList();
-        var empOpsPlansWithImportZones = Parser.GetEmpZones()
+        var importZones = CsvParser.ParseImportZoneEmpRecords(ImportZoneCsv).Distinct().ToList();
+        var empOpsPlansWithImportZones = CsvParser.GetEmpZones()
             .Where(r => importZones.Select(z => z.City_Name).Contains(r.City_Name))
             .Where(r => r.City_Name != "Los Angeles") //TODO: Remove
             .ToList();

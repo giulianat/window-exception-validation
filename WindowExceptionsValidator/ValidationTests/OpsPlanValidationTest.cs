@@ -12,7 +12,7 @@ public class OpsPlanValidationTests
     private const string FilePathToBeValidated = @"./csv/Christmas and New Years Window Exceptions - Ops Plan.csv";
 
     private readonly List<OpsPlanRecord> _expectedOpsPlan =
-        Parser.ParseImportZoneWithChangesToDeliveryDay(InputFilePath).ToList();
+        CsvParser.ParseImportZoneWithChangesToDeliveryDay(InputFilePath).ToList();
 
     [Test]
     public void ShouldHaveExpectedNumberOfWindowExceptions()
@@ -92,7 +92,7 @@ public class OpsPlanValidationTests
     public void ShouldMatchImportZoneTotals()
     {
         var laxDupeThatShouldHaveBeenRemoved = 1;
-        var expectedEmpCount = Parser.GetEmpZones().Count(z => z.Original_Delivery_Day != z.Exception_Delivery_Day);
+        var expectedEmpCount = CsvParser.GetEmpZones().Count(z => z.Original_Delivery_Day != z.Exception_Delivery_Day);
         using var reader = new StreamReader(FilePathToBeValidated);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         csv.Context.RegisterClassMap<OpsPlanRecordMap>();

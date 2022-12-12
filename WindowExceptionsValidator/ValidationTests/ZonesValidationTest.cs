@@ -39,8 +39,8 @@ public class ZonesValidationTest
     [Test]
     public void ShouldHaveDescriptionBasedOnMovedAndReferencedZoneIds()
     {
-        var marketDictionary = Parser.GetMarketCodeToNameMap();
-        var dayOfWeekDictionary = Parser.GetDayOfWeekMap();
+        var marketDictionary = CsvParser.GetMarketCodeToNameMap();
+        var dayOfWeekDictionary = CsvParser.GetDayOfWeekMap();
         using var reader = new StreamReader(ZonesCsv);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var actualRecords = csv.GetRecords<ZonesRecord>();
@@ -59,7 +59,7 @@ public class ZonesValidationTest
     [Test]
     public void ShouldHaveNameBasedOnMovedAndReferencedZoneIds()
     {
-        var dayOfWeekDictionary = Parser.GetDayOfWeekMap();
+        var dayOfWeekDictionary = CsvParser.GetDayOfWeekMap();
         using var reader = new StreamReader(ZonesCsv);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
         var actualRecords = csv.GetRecords<ZonesRecord>();
