@@ -9,13 +9,8 @@ public class WindowsValidationTest
     [SetUp]
     public void Setup()
     {
-        using var reader = new StreamReader(WindowsCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-        _windows = csv.GetRecords<WindowsRecord>().ToList();
+        _windows = CsvParser.GetWindows().ToList();
     }
-
-    private const string WindowsCsv = @"./csv/Christmas and New Years Window Exceptions - Windows.csv";
 
     private static readonly DateOnly[] Holidays =
     {

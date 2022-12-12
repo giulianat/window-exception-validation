@@ -73,6 +73,14 @@ public static class CsvParser
         
     }
 
+    public static IEnumerable<WindowsRecord> GetWindows()
+    {
+        using var reader = new StreamReader(@"./csv/Christmas and New Years Window Exceptions - Windows.csv");
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+        return csv.GetRecords<WindowsRecord>().ToList();
+    }
+
     public static IEnumerable<ImportZoneRecord> ParseImportZone(string[] allLines)
     {
         var dataLines = allLines.Skip(2).ToArray();
