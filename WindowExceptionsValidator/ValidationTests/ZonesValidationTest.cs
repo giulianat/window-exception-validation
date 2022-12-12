@@ -10,15 +10,10 @@ public class ZonesValidationTest
     [SetUp]
     public void SetUp()
     {
-        using var currentDataReader = new StreamReader(CurrentDataCsv);
-        using var currentDataCsv = new CsvReader(currentDataReader, CultureInfo.InvariantCulture);
-
-        currentDataCsv.Context.RegisterClassMap<CurrentDataRecordMap>();
-        _currentData = currentDataCsv.GetRecords<CurrentDataRecord>().ToList();
+        _currentData = CsvParser.GetCurrentData().ToList();
     }
 
     private List<CurrentDataRecord> _currentData = new();
-    private const string CurrentDataCsv = @"./csv/Christmas and New Years Window Exceptions - Current Data.csv";
     private const string ZonesCsv = @"./csv/Christmas and New Years Window Exceptions - Zones.csv";
 
     [Test]

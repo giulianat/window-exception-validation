@@ -9,15 +9,10 @@ public class CurrentDataRecordMapTest
     [SetUp]
     public void SetUp()
     {
-        using var reader = new StreamReader(CurrentDataCSV);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-        csv.Context.RegisterClassMap<CurrentDataRecordMap>();
-        _currentData = csv.GetRecords<CurrentDataRecord>().ToList();
+        _currentData = CsvParser.GetCurrentData().ToList();
     }
 
-    private List<CurrentDataRecord> _currentData;
-    private const string CurrentDataCSV = @"./csv/Christmas and New Years Window Exceptions - Current Data.csv";
+    private List<CurrentDataRecord> _currentData = new();
 
     [Test]
     public void ShouldSafelyIgnoreDuplicateColumns()
