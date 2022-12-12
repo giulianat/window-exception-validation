@@ -32,7 +32,6 @@ public class EmpZoneValidationTest
         { "SBA", "Santa Barbara" }
     };
 
-    private const string EmpZoneCsv = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - EMP Zone - GB.csv";
     private const string ImportZoneCsv = @"./csv/Xmas and NY Holiday Market_Zone Exception Tool - Import Zone.csv";
 
     [Test]

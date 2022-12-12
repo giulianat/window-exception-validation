@@ -54,6 +54,14 @@ public static class CsvParser
         return csv.GetRecords<EmpZoneRecord>().ToList();
     }
 
+    public static IEnumerable<ExceptionRecord> GetExceptions()
+    {
+        using var reader = new StreamReader(@"./csv/Christmas and New Years Window Exceptions - Exceptions.csv");
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+        return csv.GetRecords<ExceptionRecord>().ToList();
+    }
+
     public static IEnumerable<ImportZoneRecord> ParseImportZone(string[] allLines)
     {
         var dataLines = allLines.Skip(2).ToArray();

@@ -10,13 +10,8 @@ public class ExceptionsValidationTest
     [SetUp]
     public void Setup()
     {
-        using var reader = new StreamReader(ExceptionsCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-        _exceptions = csv.GetRecords<ExceptionRecord>().ToList();
+        _exceptions = CsvParser.GetExceptions().ToList();
     }
-
-    private const string ExceptionsCsv = @"./csv/Christmas and New Years Window Exceptions - Exceptions.csv";
 
     private static readonly DateOnly[] Holidays =
     {
@@ -57,6 +52,7 @@ public class ExceptionsValidationTest
             .Select(e => e.originalWindowId)
             .ToList();
 
-        Assert.Pass(JsonSerializer.Serialize(unchangedWindows));
+        Console.WriteLine(JsonSerializer.Serialize(unchangedWindows));
+        Assert.Pass();
     }
 }
