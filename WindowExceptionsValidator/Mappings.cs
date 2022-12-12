@@ -1,5 +1,3 @@
-using CsvHelper.Configuration;
-
 namespace WindowExceptionsValidation;
 
 public record MarketMapRecord
