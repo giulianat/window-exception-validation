@@ -2,18 +2,90 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using CsvHelper;
 using WindowExceptionsValidation;
-using CsvParser = WindowExceptionsValidation.CsvParser;
 
 namespace WindowExceptionsGenerator;
 
 public class Generator
 {
+    public static readonly Dictionary<string, string> MarketCodeToNameMap = new()
+    {
+        { "ATM", "College Station" },
+        { "AUS", "Austin" },
+        { "BDN", "Bend" },
+        { "BLI", "Bellingham" },
+        { "BNA", "Nashville" },
+        { "BOI", "Boise" },
+        { "BOS", "Boston" },
+        { "BRX", "Bronx" },
+        { "BTR", "Baton Rouge" },
+        { "BWI", "Severn" },
+        { "CHI", "Chicago" },
+        { "CLE", "Cleveland" },
+        { "CRP", "Corpus Christi" },
+        { "DAY", "Dayton" },
+        { "DEN", "Denver" },
+        { "DFW", "Dallas-Fort Worth" },
+        { "DSM", "Des Moines" },
+        { "DTW", "Detroit" },
+        { "EBY", "Pittsburg CA" },
+        { "EUG", "Eugene" },
+        { "EWR", "Newark" },
+        { "HAR", "Hartford" },
+        { "IAH", "Houston" },
+        { "IND", "Indianapolis" },
+        { "KCI", "Kansas City" },
+        { "LAS", "Las Vegas" },
+        { "LAX", "Los Angeles" },
+        { "LIM", "Long Island" },
+        { "LOU", "Louisville" },
+        { "MCE", "Merced" },
+        { "MKE", "Milwaukee" },
+        { "MOC", "Montgomery County" },
+        { "MSN", "Madison WI" },
+        { "MSP", "Minneapolis-Saint Paul" },
+        { "NBY", "Santa Rosa" },
+        { "NVA", "Northern Virginia" },
+        { "NWI", "Northwest Indiana" },
+        { "OKC", "Oklahoma City" },
+        { "OLM", "Olympia" },
+        { "PDX", "Portland" },
+        { "PHL", "Philadelphia" },
+        { "PHX", "Phoenix" },
+        { "PIT", "Pittsburgh" },
+        { "RDU", "Raleigh" },
+        { "RIC", "Richmond" },
+        { "RNO", "Reno" },
+        { "SAC", "Sacramento" },
+        { "SAN", "San Diego" },
+        { "SAT", "San Antonio" },
+        { "SBA", "Santa Barbara" },
+        { "SBY", "San Jose" },
+        { "SEA", "Seattle" },
+        { "SFO", "San Francisco" },
+        { "SLC", "Salt Lake City" },
+        { "SNA", "Orange County" },
+        { "SPK", "Spokane" },
+        { "STL", "St Louis" },
+        { "SWM", "Southwest Michigan" },
+        { "TPL", "Temple/Waco" },
+        { "TUS", "Tucson" }
+    };
+
+    public static readonly Dictionary<int, DayOfWeekMapRecord> NumericDayToDayOfWeekMap = new()
+    {
+        { 0, new DayOfWeekMapRecord { Abbreviation = "Sun", Day_Of_Week = "Sunday", Numeric_Day_Of_Week = 0 } },
+        { 1, new DayOfWeekMapRecord { Abbreviation = "Mon", Day_Of_Week = "Monday", Numeric_Day_Of_Week = 1 } },
+        { 2, new DayOfWeekMapRecord { Abbreviation = "Tues", Day_Of_Week = "Tuesday", Numeric_Day_Of_Week = 2 } },
+        { 3, new DayOfWeekMapRecord { Abbreviation = "Wed", Day_Of_Week = "Wednesday", Numeric_Day_Of_Week = 3 } },
+        { 4, new DayOfWeekMapRecord { Abbreviation = "Thurs", Day_Of_Week = "Thursday", Numeric_Day_Of_Week = 4 } },
+        { 5, new DayOfWeekMapRecord { Abbreviation = "Fri", Day_Of_Week = "Friday", Numeric_Day_Of_Week = 5 } },
+        { 6, new DayOfWeekMapRecord { Abbreviation = "Sat", Day_Of_Week = "Saturday", Numeric_Day_Of_Week = 6 } }
+    };
+
     private readonly IEnumerable<CurrentDataRecord> _currentData;
     private readonly string _destinationPath;
     private readonly string _holiday;
     private readonly Dictionary<int, DateOnly> _holidayWeekMap;
-    private readonly Dictionary<string, string> _marketCodeToNameMap;
-    private readonly Dictionary<int, DayOfWeekMapRecord> _numericDayToDayOfWeekMap;
     private readonly IEnumerable<OpsPlanRecord> _opsPlan;
 
     public Generator(string sourceDirectory, string destinationPath, string holiday, string sundayOfHolidayWeek)
@@ -34,10 +106,6 @@ public class Generator
             { 5, sunday.AddDays(5) },
             { 6, sunday.AddDays(6) }
         };
-
-        //TODO: Move these out of Validator? 
-        _marketCodeToNameMap = CsvParser.GetMarketCodeToNameMap();
-        _numericDayToDayOfWeekMap = CsvParser.GetDayOfWeekMap();
     }
 
     public void GenerateZones()
@@ -47,16 +115,11 @@ public class Generator
             return d =>
             {
                 var marketCode = plan.Zone_Code;
-                var day = _numericDayToDayOfWeekMap[plan.Exception_Delivery_Date].Day_Of_Week.ToUpper();
+                var day = NumericDayToDayOfWeekMap[plan.Exception_Delivery_Date].Day_Of_Week.ToUpper();
                 var zoneName = $"{marketCode}: {day}";
-                        
+
                 return d.Zone.Name.StartsWith(zoneName);
             };
-        }
-
-        string FormatBooleanAsString(bool value)
-        {
-            return value.ToString().ToUpper();
         }
 
         var doubleDeliveryZones = _opsPlan
@@ -74,8 +137,8 @@ public class Generator
 
         var zonePairs = from zone in doubleDeliveryZones
             let marketCode = zone.Zone_Code
-            let newDay = _numericDayToDayOfWeekMap[zone.Exception_Delivery_Date].Day_Of_Week.ToUpper()
-            let originalDay = _numericDayToDayOfWeekMap[zone.Original_Delivery_Date].Day_Of_Week.ToUpper()
+            let newDay = NumericDayToDayOfWeekMap[zone.Exception_Delivery_Date].Day_Of_Week.ToUpper()
+            let originalDay = NumericDayToDayOfWeekMap[zone.Original_Delivery_Date].Day_Of_Week.ToUpper()
             let refZoneName = $"{marketCode}: {newDay}"
             let movedZoneName = $"{marketCode}: {originalDay}"
             let referenceZone = _currentData.First(d => d.Zone.Name.StartsWith(refZoneName))
@@ -113,11 +176,11 @@ public class Generator
         WriteToCsv("CSV Upload - Zones - Local.csv", localZones);
     }
 
-    private string GenerateDoubleDeliveryZoneName(string movedZoneName, int refZoneStartDay)
+    private static string GenerateDoubleDeliveryZoneName(string movedZoneName, int refZoneStartDay)
     {
         var captureCollection = Regex.Match(movedZoneName, "([A-Z]{3}: [^ ]+)(.*)").Groups.Values.ToList();
         var prefix = captureCollection[1];
-        var refZoneDayOfWeek = _numericDayToDayOfWeekMap[refZoneStartDay].Day_Of_Week.ToUpper();
+        var refZoneDayOfWeek = NumericDayToDayOfWeekMap[refZoneStartDay].Day_Of_Week.ToUpper();
         var suffix = captureCollection[2];
 
         return $"{prefix} / {refZoneDayOfWeek}{suffix}";

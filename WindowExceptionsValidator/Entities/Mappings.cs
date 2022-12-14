@@ -1,8 +1,12 @@
+using CsvHelper.Configuration.Attributes;
+
 namespace WindowExceptionsValidation;
 
 public record MarketMapRecord
 {
+    [Name("Market Code")]
     public string Market_Code { get; set; }
+    [Name("Market Name")]
     public string Market_Name { get; set; }
 }
 
