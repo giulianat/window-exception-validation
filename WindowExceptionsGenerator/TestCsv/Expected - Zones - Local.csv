@@ -1,0 +1,5 @@
+zoneId,fulfillmentCenterId,name,timezone,zonePickupAddressId,expectedServiceTimeInMinutes,isLineHaul,pickupTime,marketCode
+1f1112d1-15ab-4c07-a11f-503645e8ccf7,25729cbe-719c-4314-ab07-0fbc45d38a11,BWI: WEDNESDAY / THURSDAY PM,America/New_York,fd775c49-63ca-48b0-bd57-dd885ee6b1a7,5,FALSE,07:00,BWI
+8ff09422-4188-463a-802c-0f7afdff707e,c059b389-ff65-4283-8edb-06ffc96193af,CHI: MONDAY / TUESDAY PM,America/Chicago,cf716172-2162-11e8-b467-0ed5f89f718b,5,FALSE,08:30,CHI
+b49381d8-e88d-420f-bfc7-ce679e9ea835,9da947fe-5a46-424f-b328-e9414c197a32,LAX: WEDNESDAY / THURSDAY PM,America/Los_Angeles,cf715ba0-2162-11e8-b467-0ed5f89f718b,5,FALSE,06:30,LAX
+cf94b1cd-3ddd-4fc6-afb5-12820d7ae44b,c2fcd071-f479-4f68-a54d-a382bd9fa552,SAT: MONDAY / TUESDAY PM,America/Chicago,51363b91-297e-423f-b86f-255afea14ae0,5,FALSE,06:00,SAT

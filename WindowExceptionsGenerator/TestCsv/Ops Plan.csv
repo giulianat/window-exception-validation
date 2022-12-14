@@ -1,0 +1,134 @@
+old_window_id,FC Name,Zone Code,City Name,Original Delivery Day,Exception Delivery Day,Original Delivery Date,Exception Delivery Date,Is Employee Zone
+f828c6b4-f54d-4d82-a0f8-d59d2070e73b,PNW,BLI,Bellingham,Monday,Tuesday,1,2,FALSE
+7a182ad1-d26b-4b87-b5c1-7b385bf30b9f,PNW,BDN,Bend,Monday,Tuesday,1,2,FALSE
+5abe3c19-d5ca-4305-b723-94593cdeee93,PNW,BOI,Boise,Monday,Tuesday,1,2,FALSE
+3ee9e21e-0910-4220-946d-be110b6c087e,PNW,EUG,Eugene,Monday,Tuesday,1,2,FALSE
+cc5b36cd-8fa8-407e-96f8-b1a534b002f5,PNW,OLM,Olympia,Monday,Tuesday,1,2,FALSE
+256df303-a953-49e6-83ac-12dfe1fe7bbe,PNW,PDX,Portland,Monday,Tuesday,1,2,FALSE
+b1c4ffc7-d1b7-480c-9ba2-51bb97516f89,PNW,SEA,Seattle,Monday,Tuesday,1,2,FALSE
+dc1c70cb-a561-4581-b6a9-581557245af2,PNW,SPK,Spokane,Monday,Tuesday,1,2,FALSE
+350a4688-0294-41ed-b824-68fb76d0fff8,BWI,MOC,Montgomery County,Monday,Tuesday,1,2,FALSE
+a66e8a6b-e1b6-46ec-9366-22083f19bc74,BWI,BWI,Severn,Monday,Tuesday,1,2,FALSE
+e12263ec-2b4a-432b-9783-c6cea373ee6c,BWI,BRX,Bronx,Monday,Tuesday,1,2,FALSE
+09fd7c48-84f6-469a-beeb-a730922efbbc,BWI,LIM,Long Island,Monday,Tuesday,1,2,FALSE
+71d3fc78-883f-4361-9961-f1055060ca6a,BWI,EWR,Newark,Monday,Tuesday,1,2,FALSE
+f8b7eb84-e552-4de9-8b7b-d8378b985183,BWI,NVA,Northern Virginia,Monday,Tuesday,1,2,FALSE
+863f927e-b0da-4a4c-b2df-43bd6327f392,CHI,CHI,Chicago,Monday,Tuesday,1,2,FALSE
+17cf2a65-253f-467b-9d5d-ee4764877f92,CHI,DAY,Dayton,Monday,Tuesday,1,2,FALSE
+0959b963-a82a-4e8f-a1f6-5217300e202d,CHI,IND,Indianapolis,Monday,Tuesday,1,2,FALSE
+845818ba-b18f-44ed-8ae6-9e8a283e12f3,CHI,LOU,Louisville,Monday,Tuesday,1,2,FALSE
+c2ad8cbf-4e3f-4e76-992d-eb9a303168eb,CHI,MSN,Madison WI,Monday,Tuesday,1,2,FALSE
+ca4ad9a2-7364-4c95-9aa7-441e050d4f3d,CHI,MKE,Milwaukee,Monday,Tuesday,1,2,FALSE
+dbe934c6-5b94-4a60-8f05-9859f98fabf3,CHI,MSP,Minneapolis-Saint Paul,Monday,Tuesday,1,2,FALSE
+b25d9d60-8f8a-4f11-bc6d-42ed8a3899d7,CHI,BNA,Nashville,Monday,Tuesday,1,2,FALSE
+c9449c3d-f12f-472e-95bf-4efaead39a0e,LA,LAS,Las Vegas,Monday,Tuesday,1,2,FALSE
+ed93b5a0-230a-44e8-85ca-33f254d69321,LA,SLC,Salt Lake City,Monday,Tuesday,1,2,FALSE
+04912364-e308-4c45-a364-32c19dfeaac9,LA,PHX,Phoenix,Monday,Tuesday,1,2,FALSE
+79b40776-6675-4f2e-9a64-566ef8f7bf97,LA,TUS,Tucson,Monday,Tuesday,1,2,FALSE
+db60a51f-ffab-400a-a6cc-d9a83899b505,LA,SBA,Santa Barbara,Monday,Tuesday,1,2,FALSE
+53496958-8691-40df-87a2-f81a7f35c4df,LA,LAX,Los Angeles,Monday,Tuesday,1,2,FALSE
+c1810aa2-50e6-4c9a-93d7-74a455464769,LA,SNA,Orange County,Monday,Tuesday,1,2,FALSE
+a62f84a7-d27e-4a2f-95d0-35d474fa5860,LA,SAN,San Diego,Monday,Tuesday,1,2,FALSE
+7b3b57e1-0eaa-4957-927d-5827e121d81d,LA,SFO,San Francisco,Monday,Tuesday,1,2,FALSE
+4ad11863-b276-4326-8a2b-cbb1bd583bb3,LA,SBY,San Jose,Monday,Tuesday,1,2,FALSE
+e05a3bbd-2e2f-426c-9d27-f3a724dc8596,LA,NBY,Santa Rosa,Monday,Tuesday,1,2,FALSE
+d2b4ffcc-73c0-4b95-a119-2f56c80821fa,LA,EBY,Pittsburg CA,Monday,Tuesday,1,2,FALSE
+d998d7cb-0232-4e05-8f45-0c43ecd3e020,LA,RNO,Reno,Monday,Tuesday,1,2,FALSE
+0f0d3e31-e6f2-4717-8ff9-982e9df242d4,LA,SAC,Sacramento,Monday,Tuesday,1,2,FALSE
+1a71da33-6b78-43dd-aafd-399713421965,SAT,SAT,San Antonio,Monday,Tuesday,1,2,FALSE
+963cbf0b-224d-488c-b4f7-efc200a65ca2,PNW,BLI,Bellingham,Tuesday,Wednesday,2,3,FALSE
+799414d7-6757-4448-8181-95c6df2e124a,PNW,BDN,Bend,Tuesday,Wednesday,2,3,FALSE
+7e8ef2f8-a268-4d58-8e67-6caeef904022,PNW,BOI,Boise,Tuesday,Wednesday,2,3,FALSE
+b9a3bd70-2f24-4c71-b7a5-8fb878a567db,PNW,EUG,Eugene,Tuesday,Wednesday,2,3,FALSE
+430eb096-a043-4d63-a052-6d463b8f0e2a,PNW,OLM,Olympia,Tuesday,Wednesday,2,3,FALSE
+50038150-f7ac-43c3-bed4-a5316f11e46e,PNW,PDX,Portland,Tuesday,Wednesday,2,3,FALSE
+38ffc46a-021b-4969-9219-a36c5fb0fbf0,PNW,SEA,Seattle,Tuesday,Wednesday,2,3,FALSE
+adf18922-7fd0-4ef5-b518-8fb38ee887ea,PNW,SPK,Spokane,Tuesday,Wednesday,2,3,FALSE
+951d445c-ea63-4b87-b335-697f9204c606,BWI,BWI,Severn,Tuesday,Wednesday,2,3,FALSE
+3426c2fb-c9dc-4609-b0ca-a056a601b562,BWI,BRX,Bronx,Tuesday,Wednesday,2,3,FALSE
+014af6b4-346e-4d70-88ad-fa4304df701c,BWI,LIM,Long Island,Tuesday,Wednesday,2,3,FALSE
+c7aeb972-c385-4445-af4a-7e9458d0b408,BWI,EWR,Newark,Tuesday,Wednesday,2,3,FALSE
+5acdd23e-92e8-405b-91d8-d281c72796c5,BWI,MOC,Montgomery County,Tuesday,Wednesday,2,3,FALSE
+bd14eafa-0486-4a0c-aeac-2b4021c72c9d,CHI,DAY,Dayton,Tuesday,Wednesday,2,3,FALSE
+f4a60b0d-24bc-4e6a-931c-eb78f14e9941,CHI,IND,Indianapolis,Tuesday,Wednesday,2,3,FALSE
+b60137aa-c315-449b-9ab6-9b88233debcf,CHI,LOU,Louisville,Tuesday,Wednesday,2,3,FALSE
+46e04224-a568-4c91-be74-83fccc75e80c,CHI,MSN,Madison WI,Tuesday,Wednesday,2,3,FALSE
+001dc390-909e-49b2-a12c-87850d476daa,CHI,MKE,Milwaukee,Tuesday,Wednesday,2,3,FALSE
+0975482e-d7be-45a6-a35b-3df27ab57493,CHI,MSP,Minneapolis-Saint Paul,Tuesday,Wednesday,2,3,FALSE
+075d9f7c-4483-40fd-9877-ec02152d5742,CHI,BNA,Nashville,Tuesday,Wednesday,2,3,FALSE
+9a32d9ce-44a7-454d-96aa-1da6897adfcf,LA,DEN,Denver,Tuesday,Wednesday,2,3,FALSE
+de6cd28d-3674-4947-bd2c-ad553da80ff4,LA,LAS,Las Vegas,Tuesday,Wednesday,2,3,FALSE
+82e37986-8179-4879-b3f6-db198594c0ed,LA,SLC,Salt Lake City,Tuesday,Wednesday,2,3,FALSE
+98e1a72e-99c3-4f8c-a549-76d1fddd1622,LA,PHX,Phoenix,Tuesday,Wednesday,2,3,FALSE
+5a820b7a-b29f-40de-9964-64e833f5ec1f,LA,TUS,Tucson,Tuesday,Wednesday,2,3,FALSE
+e412a14a-ddc3-4f6f-bd5a-e8c1f79fed93,LA,SBA,Santa Barbara,Tuesday,Wednesday,2,3,FALSE
+50167f8d-7217-4618-b9c8-2ad1d01bd116,LA,LAX,Los Angeles,Tuesday,Wednesday,2,3,FALSE
+482c9536-c151-4864-9c91-4a89453f1de5,LA,EBY,Pittsburg CA,Tuesday,Wednesday,2,3,FALSE
+901b764f-f1e8-457a-a156-72dc09c0ffb5,LA,SBY,San Jose,Tuesday,Wednesday,2,3,FALSE
+932b79f8-40e1-4523-8065-c22e0c5623fb,PNW,BLI,Bellingham,Wednesday,Thursday,3,4,FALSE
+0d5296b2-2b7b-48ee-8960-905b793caba3,PNW,BDN,Bend,Wednesday,Thursday,3,4,FALSE
+d59452a6-e799-49a4-a622-84cfeaa3becb,PNW,BOI,Boise,Wednesday,Thursday,3,4,FALSE
+3f136629-a933-40d9-ac32-d351b4a9e128,PNW,EUG,Eugene,Wednesday,Thursday,3,4,FALSE
+74548c37-f085-43a5-b85d-f342533747bb,PNW,OLM,Olympia,Wednesday,Thursday,3,4,FALSE
+96b2a2b2-d24e-4b3b-933e-f38851668a39,PNW,PDX,Portland,Wednesday,Thursday,3,4,FALSE
+6c486673-70a3-4c86-93e4-f83266c102e1,PNW,SEA,Seattle,Wednesday,Thursday,3,4,FALSE
+6ea46e65-182f-4dcc-ab1c-c751c8293130,PNW,SPK,Spokane,Wednesday,Thursday,3,4,FALSE
+baf11358-e9bb-443f-8b63-e8e108bc9665,BWI,BRX,Bronx,Wednesday,Thursday,3,4,FALSE
+8d36da6c-95ad-422b-83fa-d67a35abfe02,BWI,LIM,Long Island,Wednesday,Thursday,3,4,FALSE
+89b4d9db-cb6c-48ff-8c5a-8220d2bcfe31,BWI,EWR,Newark,Wednesday,Thursday,3,4,FALSE
+7ddd2473-3167-47ae-a492-100f87048405,BWI,BWI,Severn,Wednesday,Thursday,3,4,FALSE
+7a7e2a86-dc91-44b4-8d68-ada60f0f20f6,CHI,DAY,Dayton,Wednesday,Thursday,3,4,FALSE
+0175cdaf-e972-44b6-ace8-cb591a2cdef8,CHI,IND,Indianapolis,Wednesday,Thursday,3,4,FALSE
+fb76ba2c-bc7d-4e2d-a150-a28b036ef400,CHI,LOU,Louisville,Wednesday,Thursday,3,4,FALSE
+9d9023bf-90f7-4435-a6af-79764cafad53,CHI,MSN,Madison WI,Wednesday,Thursday,3,4,FALSE
+9a348ab1-8d21-4ce7-83ac-7558adbd8329,CHI,MKE,Milwaukee,Wednesday,Thursday,3,4,FALSE
+37e0afb9-bae8-4e80-95ef-0ba1c2cd9bce,CHI,MSP,Minneapolis-Saint Paul,Wednesday,Thursday,3,4,FALSE
+b4bfb6ac-2215-45c9-9556-8c9d04a11351,CHI,BNA,Nashville,Wednesday,Thursday,3,4,FALSE
+ecc5a31c-38a7-4b93-a40a-3614405039a1,LA,DEN,Denver,Wednesday,Thursday,3,4,FALSE
+1099ad9f-8ae8-4f32-92c6-16fe85d93072,LA,LAS,Las Vegas,Wednesday,Thursday,3,4,FALSE
+104b7818-2787-4e95-86a6-a6976ac27bfe,LA,SLC,Salt Lake City,Wednesday,Thursday,3,4,FALSE
+6b39dc99-b778-4e97-bf2e-b9eda413e026,LA,PHX,Phoenix,Wednesday,Thursday,3,4,FALSE
+7501eee2-0b00-431b-b46c-451d50a83497,LA,TUS,Tucson,Wednesday,Thursday,3,4,FALSE
+098906eb-ee14-4f34-9f48-88644db63db0,LA,SBA,Santa Barbara,Wednesday,Thursday,3,4,FALSE
+aa0a5fb1-c0dc-4c41-be2d-0d5db6e0a7a8,LA,LAX,Los Angeles,Wednesday,Thursday,3,4,FALSE
+66d6b3b8-60ea-45eb-b986-bbd3dbb23b71,LA,EBY,Pittsburg CA,Wednesday,Thursday,3,4,FALSE
+33b8726b-29d5-4a36-b6b7-24cec4c16212,PNW,BLI,Bellingham,Thursday,Friday,4,5,FALSE
+a5a1ea5a-b7e2-4055-a64b-86c3766b11fb,PNW,BDN,Bend,Thursday,Friday,4,5,FALSE
+a1df03a8-b175-484e-a09a-ce9c3b17e012,PNW,BOI,Boise,Thursday,Friday,4,5,FALSE
+a255969a-8336-4033-9fac-dcc6fdaa8f9d,PNW,EUG,Eugene,Thursday,Friday,4,5,FALSE
+d4ba34e7-346a-4114-b359-2cddf0e32961,PNW,OLM,Olympia,Thursday,Friday,4,5,FALSE
+cd564b4c-419c-4af1-8b39-32743663d14e,PNW,PDX,Portland,Thursday,Friday,4,5,FALSE
+38ebca8e-6bc8-4d6a-abdc-0817cc79ac08,PNW,SEA,Seattle,Thursday,Friday,4,5,FALSE
+9764c226-d3fb-4ca6-9498-7788fd1e2071,PNW,SPK,Spokane,Thursday,Friday,4,5,FALSE
+7b64c42d-6cd0-47dd-bc6b-22098565ac4d,BWI,BRX,Bronx,Thursday,Friday,4,5,FALSE
+2c46e668-3337-4929-bd15-95d5769103c3,BWI,LIM,Long Island,Thursday,Friday,4,5,FALSE
+b5975bc1-140f-4fd7-a8e0-70a352abe01d,BWI,EWR,Newark,Thursday,Friday,4,5,FALSE
+0a9067fe-e243-4c35-8f97-a213f26eb41e,CHI,BNA,Nashville,Thursday,Friday,4,5,FALSE
+89dcbf4e-db78-4013-bc29-2770bd33a1ec,CHI,MKE,Milwaukee,Thursday,Friday,4,5,FALSE
+786f9695-d721-4332-8e95-b5bf7ee1e398,CHI,MSN,Madison WI,Thursday,Friday,4,5,FALSE
+e5dbebd6-16bd-4239-aa66-2e1aa42c3c2c,CHI,MSP,Minneapolis-Saint Paul,Thursday,Friday,4,5,FALSE
+60b68572-38de-41c5-a711-18cea725e83b,CHI,IND,Indianapolis,Thursday,Friday,4,5,FALSE
+b0e6bf59-5ef9-43bb-897a-4d08f2144862,CHI,LOU,Louisville,Thursday,Friday,4,5,FALSE
+0540cb6f-b7a4-435a-8385-94e79fa11a1d,CHI,DAY,Dayton,Thursday,Friday,4,5,FALSE
+73b33630-1c7a-47aa-bdaa-5ede8f993ddb,LA,DEN,Denver,Thursday,Friday,4,5,FALSE
+8beeeec9-d9af-42b7-9dce-794329b18cfd,LA,LAS,Las Vegas,Thursday,Friday,4,5,FALSE
+f08ce25e-10e0-4e8b-9fc5-d0596e0740ac,LA,SLC,Salt Lake City,Thursday,Friday,4,5,FALSE
+315660f1-5296-4625-b629-5b87eb117817,LA,PHX,Phoenix,Thursday,Friday,4,5,FALSE
+c69d2972-d98c-4715-a23f-3396f03840ce,LA,TUS,Tucson,Thursday,Friday,4,5,FALSE
+49de0fc8-ca54-48f8-9571-e22c756622df,LA,SBA,Santa Barbara,Thursday,Friday,4,5,FALSE
+41a66bac-422b-4411-b7d2-637cfb2ae02c,PNW,BLI,Bellingham,Monday,Tuesday,1,2,TRUE
+d8b59966-0894-4457-b294-0179787d7f4d,PNW,PDX,Portland,Monday,Tuesday,1,2,TRUE
+7dd21c4c-4c41-4b62-b006-6fe0cb899d1a,PNW,SEA,Seattle,Monday,Tuesday,1,2,TRUE
+87cde284-0269-4feb-8464-e804fb47d321,BWI,BWI,Severn,Monday,Tuesday,1,2,TRUE
+3225c6e7-fb44-4d3b-b338-4a7d65c9ec0e,PNW,SPK,Spokane,Tuesday,Wednesday,2,3,TRUE
+3270e6bc-6da1-433f-b81e-85d06bdecbd6,LA,DEN,Denver,Tuesday,Wednesday,2,3,TRUE
+bece9e65-e190-4995-96fb-0e943223e502,PNW,BOI,Boise,Thursday,Friday,4,5,TRUE
+d9e7246a-a190-48a5-90a6-20cb9f5e6011,PNW,OLM,Olympia,Thursday,Friday,4,5,TRUE
+605c3eb6-ac05-43ef-a6e5-e505349d87ea,LA,LAS,Las Vegas,Thursday,Friday,4,5,TRUE
+acb5bb3f-e1a7-4c43-b0ca-a74bee74e7ae,LA,SLC,Salt Lake City,Thursday,Friday,4,5,TRUE
+d9bdce04-200d-4f8a-b0c4-d865cbe1120d,LA,PHX,Phoenix,Thursday,Friday,4,5,TRUE
+82928dc1-fd2a-4016-9a45-ea65c5de37c8,BWI,HAR,Hartford,Tuesday,Wednesday,2,3,TRUE
+4e707579-05e7-4443-96be-0272c7e5b773,BWI,NVA,Northern Virginia,Tuesday,Wednesday,2,3,TRUE
+8442a5c5-3493-47f1-9d00-e0a790296261,BWI,EWR,Newark,Monday,Wednesday,1,3,TRUE
+b686fa2d-e3c1-4933-a67b-a1b4b8c11259,BWI,MOC,Montgomery County,Friday,Wednesday,5,3,TRUE
+3611b779-4f40-4f9e-a47b-063855a3ad60,BWI,BOS,Boston,Tuesday,Wednesday,2,3,TRUE

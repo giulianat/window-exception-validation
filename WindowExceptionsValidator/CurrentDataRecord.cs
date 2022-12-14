@@ -32,7 +32,7 @@ public record Window
 {
     public string WindowId { get; set; }
     public string FulfillmentCenterId { get; set; }
-    public string StartDay { get; set; }
+    public int StartDay { get; set; }
     public string StartTime { get; set; }
     public string EndDay { get; set; }
     public string EndTime { get; set; }

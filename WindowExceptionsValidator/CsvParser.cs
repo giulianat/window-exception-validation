@@ -15,7 +15,7 @@ public static class CsvParser
             .ToDictionary(m => m.Market_Code, m => m.Market_Name);
     }
 
-    public static Dictionary<string, DayOfWeekMapRecord> GetDayOfWeekMap()
+    public static Dictionary<int, DayOfWeekMapRecord> GetDayOfWeekMap()
     {
         using var mappingsReader = new StreamReader(@"./csv/Mappings/DayOfWeekMap.csv");
         using var mappingsCsv = new CsvReader(mappingsReader, CultureInfo.InvariantCulture);

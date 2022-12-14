@@ -12,9 +12,15 @@ public class ZoneToDayMappingOutputValidationTest
         _zones = CsvParser.GetZones().ToList();
         _windows = CsvParser.GetWindows().ToList();
     }
-
-    private const string ZoneToDayCsv =
-        @"./csv/Christmas and New Years Window Exceptions - Zone to Day Mapping Output.csv";
+    
+    private static readonly DateOnly[] Holidays =
+    {
+        new(2022, 12, 24),
+        new(2022, 12, 25),
+        new(2022, 12, 26),
+        new(2023, 1, 1),
+        new(2023, 1, 2)
+    };
 
     private static readonly Dictionary<int, DateOnly> ChristmasWeekMap = new()
     {
@@ -284,6 +290,17 @@ public class ZoneToDayMappingOutputValidationTest
                 Assert.That(pack, Is.LessThan(delivery), $"Delivery Comparison for {zoneOutput.ZoneName}");
             }
         });
+    }
+    
+    [Test]
+    public void ShouldNotDeliverOnHoliday()
+    {
+        var actualRecords = CsvParser.GetZoneToDayMappingOutput().ToList();
+        
+        var numberOfStartDaysOnAHoliday = actualRecords
+            .Count(z => Holidays.Select(h => h.ToString("M/dd/yyyy")).Contains(z.DeliveryDate));
+
+        Assert.That(numberOfStartDaysOnAHoliday, Is.Zero);
     }
 
     private static DateTime ConvertToDateTime(string datetime)

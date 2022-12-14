@@ -14,7 +14,6 @@ public class ZonesValidationTest
     }
 
     private List<CurrentDataRecord> _currentData = new();
-    private const string ZonesCsv = @"./csv/Christmas and New Years Window Exceptions - Zones.csv";
 
     [Test]
     public void ShouldHaveCorrectFulfillmentCenter()

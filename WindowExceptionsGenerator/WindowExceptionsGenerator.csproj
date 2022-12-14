@@ -7,4 +7,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WindowExceptionsValidator\WindowExceptionsValidator.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="TestCsv\*.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

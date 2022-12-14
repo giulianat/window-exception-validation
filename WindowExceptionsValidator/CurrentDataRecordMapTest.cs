@@ -23,7 +23,7 @@ public class CurrentDataRecordMapTest
         Assert.That(firstRow.DeliveryProviderLookup, Is.EqualTo("CHI|1|Bringg"));
         Assert.That(firstRow.Window.WindowId, Is.EqualTo("863f927e-b0da-4a4c-b2df-43bd6327f392"));
         Assert.That(firstRow.Window.FulfillmentCenterId, Is.EqualTo("c059b389-ff65-4283-8edb-06ffc96193af"));
-        Assert.That(firstRow.Window.StartDay, Is.EqualTo("1"));
+        Assert.That(firstRow.Window.StartDay, Is.EqualTo(1));
         Assert.That(firstRow.Window.StartTime, Is.EqualTo("5:00:00"));
         Assert.That(firstRow.Window.EndDay, Is.EqualTo("1"));
         Assert.That(firstRow.Window.EndTime, Is.EqualTo("21:00:00"));

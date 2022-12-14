@@ -15,6 +15,6 @@ public record FulfillmentCenterMapRecord
 public record DayOfWeekMapRecord
 {
     public string Day_Of_Week { get; set; }
-    public string Numeric_Day_Of_Week { get; set; }
+    public int Numeric_Day_Of_Week { get; set; }
     public string Abbreviation { get; set; }
 }
