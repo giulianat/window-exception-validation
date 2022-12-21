@@ -149,7 +149,6 @@ public class Generator
 
     public void GenerateWindows()
     {
-        string FormatTime(string time) => TimeOnly.Parse(time).ToString("HH:mm:ss");
         var doubleDeliveryZones = GetDoubleDeliveryZones();
         var zoneNameToGeneratedIdMap = ReadZones(_sourceDirectory).ToDictionary(z => z.Name, z=> z.ZoneId);
         var plansByWindowType = _opsPlan
@@ -161,109 +160,74 @@ public class Generator
         var changedWindows = from opsPlan in changedSingleWindows
             let windowId = opsPlan.old_window_id
             let refData = _currentData.First(d => d.Window.WindowId == windowId)
-            let refWindow = refData.Window
             let newDeliveryDate = opsPlan.Exception_Delivery_Date.ToString()
-            select new Window
+            select new Window(CreateWindowFromCurrentData(refData))
             {
-                windowId = Guid.NewGuid().ToString(),
-                zoneId = refData.Zone.ZoneId,
-                customizationStartDay = refWindow.CustomizationStartDay,
-                customizationStartTime = FormatTime(refWindow.CustomizationStartTime),
-                customizationEndDay = refWindow.CustomizationEndDay,
-                customizationEndTime = FormatTime(refWindow.CustomizationEndTime),
-                dispatchDay = refWindow.DispatchDay.ToString(),
-                dispatchTime = FormatTime(refWindow.DispatchTime),
                 startDay = newDeliveryDate,
-                startTime = FormatTime(refWindow.StartTime),
-                endDay = newDeliveryDate,
-                endTime = FormatTime(refWindow.EndTime),
-                fulfillmentCenterId = refWindow.FulfillmentCenterId,
-                deliveryPrice = refWindow.DeliveryPrice,
-                subtotalMin = refWindow.SubtotalMin,
-                deliveryProvider = refWindow.DeliveryProvider,
-                packDateOffset = refWindow.PackDateOffset,
-                carrierDaysInTransit = refWindow.CarrierDaysinTransit,
-                messageToUser = $"{_holiday.ToLower()}-window-exceptions-{_holidayWeekMap[0].Year}",
+                endDay = newDeliveryDate
             };
 
         var movedDoubleDeliveryWindows = from opsPlan in changedDoubleDeliveryWindows
             let windowId = opsPlan.old_window_id
+            let refData = _currentData.First(d => d.Window.WindowId == windowId)
+            let newDeliveryDate = opsPlan.Exception_Delivery_Date.ToString()
             let doubleDeliveryZone = doubleDeliveryZones.First(pair => pair.movedZone.Window.WindowId == windowId)
             let deliveryZoneName = GenerateDoubleDeliveryZoneName(doubleDeliveryZone)
-            let refData = _currentData.First(d => d.Window.WindowId == windowId)
-            let zoneId = zoneNameToGeneratedIdMap[deliveryZoneName]
-            let refWindow = refData.Window
-            let newDeliveryDate = opsPlan.Exception_Delivery_Date.ToString()
-            let movedDispatchDateTime = GetDispatchDateTime(doubleDeliveryZone.movedZone)
-            let refDispatchDateTime = GetDispatchDateTime(doubleDeliveryZone.referenceZone)
-            let maxDispatchDateTime = movedDispatchDateTime > refDispatchDateTime ? movedDispatchDateTime : refDispatchDateTime
-            select new Window
+            let newZoneId = zoneNameToGeneratedIdMap[deliveryZoneName]
+            select new Window(CreateWindowFromCurrentData(refData))
             {
-                windowId = Guid.NewGuid().ToString(),
-                zoneId = zoneId,
-                customizationStartDay = refWindow.CustomizationStartDay,
-                customizationStartTime = FormatTime(refWindow.CustomizationStartTime),
-                customizationEndDay = refWindow.CustomizationEndDay,
-                customizationEndTime = FormatTime(refWindow.CustomizationEndTime),
+                zoneId = newZoneId,
                 dispatchDay = doubleDeliveryZone.referenceZone.Window.DispatchDay.ToString(),
                 dispatchTime = doubleDeliveryZone.referenceZone.Window.DispatchTime,
                 startDay = newDeliveryDate,
-                startTime = FormatTime(refWindow.StartTime),
                 endDay = newDeliveryDate,
-                endTime = FormatTime(refWindow.EndTime),
-                fulfillmentCenterId = refWindow.FulfillmentCenterId,
-                deliveryPrice = refWindow.DeliveryPrice,
-                subtotalMin = refWindow.SubtotalMin,
-                deliveryProvider = refWindow.DeliveryProvider,
-                packDateOffset = refWindow.PackDateOffset,
-                carrierDaysInTransit = refWindow.CarrierDaysinTransit,
-                messageToUser = $"{_holiday.ToLower()}-window-exceptions-{_holidayWeekMap[0].Year}",
             };
 
-        var doubleDeliveryUnchangedWindows = from doubleDeliveryZone in doubleDeliveryZones
+        var unchangedDoubleDeliveryWindows = from doubleDeliveryZone in doubleDeliveryZones
             let windowId = doubleDeliveryZone.referenceZone.Window.WindowId
             let refData = _currentData.First(d => d.Window.WindowId == windowId)
             let doubleDeliveryZoneName = GenerateDoubleDeliveryZoneName(doubleDeliveryZone)
             let newZoneId = zoneNameToGeneratedIdMap[doubleDeliveryZoneName]
             let refWindow = refData.Window
-            select new Window
+            select new Window(CreateWindowFromCurrentData(refData))
             {
-                windowId = Guid.NewGuid().ToString(),
-                zoneId = newZoneId,
-                customizationStartDay = refWindow.CustomizationStartDay,
-                customizationStartTime = FormatTime(refWindow.CustomizationStartTime),
-                customizationEndDay = refWindow.CustomizationEndDay,
-                customizationEndTime = FormatTime(refWindow.CustomizationEndTime),
-                dispatchDay = refWindow.DispatchDay.ToString(),
-                dispatchTime = refWindow.DispatchTime,
-                startDay = refWindow.StartDay.ToString(),
-                startTime = FormatTime(refWindow.StartTime),
-                endDay = refWindow.EndDay,
-                endTime = FormatTime(refWindow.EndTime),
-                fulfillmentCenterId = refWindow.FulfillmentCenterId,
-                deliveryPrice = refWindow.DeliveryPrice,
-                subtotalMin = refWindow.SubtotalMin,
-                deliveryProvider = refWindow.DeliveryProvider,
-                packDateOffset = refWindow.PackDateOffset,
-                carrierDaysInTransit = refWindow.CarrierDaysinTransit,
-                messageToUser = $"{_holiday.ToLower()}-window-exceptions-{_holidayWeekMap[0].Year}",
+                zoneId = newZoneId
             };
 
-        var windows = changedWindows.Union(movedDoubleDeliveryWindows).Union(doubleDeliveryUnchangedWindows);
+        var windows = changedWindows.Union(movedDoubleDeliveryWindows).Union(unchangedDoubleDeliveryWindows);
         WriteToCsv("CSV Upload - Windows.csv", windows);
     }
 
-    private DateTime GetDispatchDateTime(CurrentDataRecord record)
+    private Window CreateWindowFromCurrentData(CurrentDataRecord refData)
     {
-        var window = record.Window;
-        var custoStartDayOfWeek = int.Parse(window.CustomizationStartDay);
-        var custoClosedDayOfWeek = int.Parse(window.CustomizationEndDay);
-        var weekOffset = custoStartDayOfWeek > custoClosedDayOfWeek ? 0 : 7;
-
-        return _holidayWeekMap[window.DispatchDay]
-            .AddDays(weekOffset)
-            .ToDateTime(TimeOnly.Parse(window.DispatchTime));
+        var refWindow = refData.Window;
+        var refZone = refData.Zone;
+        
+        return new Window
+        {
+            windowId = Guid.NewGuid().ToString(),
+            zoneId = refZone.ZoneId,
+            customizationStartDay = refWindow.CustomizationStartDay,
+            customizationStartTime = ShouldFormatTime(refWindow.CustomizationStartTime),
+            customizationEndDay = refWindow.CustomizationEndDay,
+            customizationEndTime = ShouldFormatTime(refWindow.CustomizationEndTime),
+            dispatchDay = refWindow.DispatchDay.ToString(),
+            dispatchTime = refWindow.DispatchTime,
+            startDay = refWindow.StartDay.ToString(),
+            startTime = ShouldFormatTime(refWindow.StartTime),
+            endDay = refWindow.EndDay,
+            endTime = ShouldFormatTime(refWindow.EndTime),
+            fulfillmentCenterId = refWindow.FulfillmentCenterId,
+            deliveryPrice = refWindow.DeliveryPrice,
+            subtotalMin = refWindow.SubtotalMin,
+            deliveryProvider = refWindow.DeliveryProvider,
+            packDateOffset = refWindow.PackDateOffset,
+            carrierDaysInTransit = refWindow.CarrierDaysinTransit,
+            messageToUser = $"{_holiday.ToLower()}-window-exceptions-{_holidayWeekMap[0].Year}",
+        };
     }
+
+    private static string ShouldFormatTime(string time) => TimeOnly.Parse(time).ToString("HH:mm:ss");
 
     private IEnumerable<(CurrentDataRecord movedZone, CurrentDataRecord referenceZone)> GetDoubleDeliveryZones()
     {

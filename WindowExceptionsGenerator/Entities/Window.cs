@@ -2,6 +2,31 @@ namespace WindowExceptionsGenerator.Entities;
 
 public class Window
 {
+    public Window() { }
+    
+    public Window(Window copy)
+    {
+        windowId = copy.windowId;
+        zoneId = copy.zoneId;
+        customizationStartDay = copy.customizationStartDay;
+        customizationStartTime = copy.customizationStartTime;
+        customizationEndDay = copy.customizationEndDay;
+        customizationEndTime = copy.customizationEndTime;
+        dispatchDay = copy.dispatchDay;
+        dispatchTime = copy.dispatchTime;
+        startDay = copy.startDay;
+        startTime = copy.startTime;
+        endDay = copy.endDay;
+        endTime = copy.endTime;
+        fulfillmentCenterId = copy.fulfillmentCenterId;
+        deliveryPrice = copy.deliveryPrice;
+        subtotalMin = copy.subtotalMin;
+        deliveryProvider = copy.deliveryProvider;
+        packDateOffset = copy.packDateOffset;
+        carrierDaysInTransit = copy.carrierDaysInTransit;
+        messageToUser = copy.messageToUser;
+    }
+
     public string windowId { get; set; }
 
     public string zoneId { get; set; }
