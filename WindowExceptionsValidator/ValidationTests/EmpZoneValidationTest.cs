@@ -1,4 +1,5 @@
 using System.Text.Json;
+using WindowExceptionsValidation.Entities;
 
 namespace WindowExceptionsValidation.ValidationTests;
 

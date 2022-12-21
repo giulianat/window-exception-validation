@@ -1,6 +1,6 @@
 using CsvHelper.Configuration.Attributes;
 
-namespace WindowExceptionsGenerator;
+namespace WindowExceptionsGenerator.Entities;
 
 public abstract class LocalZone
 {

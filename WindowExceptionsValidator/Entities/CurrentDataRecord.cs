@@ -1,6 +1,6 @@
 using CsvHelper.Configuration;
 
-namespace WindowExceptionsValidation;
+namespace WindowExceptionsValidation.Entities;
 
 public record CurrentDataRecord
 {
@@ -36,7 +36,7 @@ public record Window
     public string StartTime { get; set; }
     public string EndDay { get; set; }
     public string EndTime { get; set; }
-    public int? DispatchDay { get; set; }
+    public int DispatchDay { get; set; }
     public string DispatchTime { get; set; }
     public string CustomizationStartDay { get; set; }
     public string CustomizationStartTime { get; set; }

@@ -1,6 +1,6 @@
 using CsvHelper.Configuration;
 
-namespace WindowExceptionsValidation;
+namespace WindowExceptionsValidation.Entities;
 
 public record ZoneToDayMappingOutputRecord
 {

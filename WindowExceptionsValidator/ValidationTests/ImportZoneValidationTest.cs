@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using WindowExceptionsValidation.Entities;
 
 namespace WindowExceptionsValidation.ValidationTests;
 

@@ -1,4 +1,4 @@
-namespace WindowExceptionsValidation;
+namespace WindowExceptionsValidation.Entities;
 
 public record ExceptionRecord
 {

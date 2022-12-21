@@ -1,6 +1,6 @@
 using CsvHelper.Configuration.Attributes;
 
-namespace WindowExceptionsValidation;
+namespace WindowExceptionsValidation.Entities;
 
 public record MarketMapRecord
 {
