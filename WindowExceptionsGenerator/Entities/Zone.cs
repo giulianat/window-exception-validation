@@ -2,7 +2,7 @@ using CsvHelper.Configuration.Attributes;
 
 namespace WindowExceptionsGenerator.Entities;
 
-public abstract class LocalZone
+public class LocalZone
 {
     private string _pickupTime;
     private string _isLineHaul;
@@ -29,7 +29,7 @@ public abstract class LocalZone
     public string PickupTime
     {
         get => _pickupTime;
-        set => _pickupTime = TimeOnly.ParseExact(value, "H:mm:ss").ToString("HH:mm");
+        set => _pickupTime = TimeOnly.Parse(value).ToString("HH:mm");
     }
 
     [Name("marketCode"), Index(8)] public string MarketCode { get; set; }
@@ -43,6 +43,6 @@ public class LineHaulZone : LocalZone
     public string TransitTime
     {
         get => _transitTime;
-        set => _transitTime = TimeOnly.ParseExact(value, "H:mm:ss").ToString("HH:mm");
+        set => _transitTime = TimeOnly.Parse(value).ToString("HH:mm");
     }
 }

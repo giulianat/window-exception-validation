@@ -1,7 +1,9 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using CsvHelper;
-using WindowExceptionsValidation;
+using WindowExceptionsGenerator.Entities;
+using WindowExceptionsValidation.Entities;
+using Window = WindowExceptionsGenerator.Entities.Window;
 
 namespace WindowExceptionsGenerator;
 
@@ -87,9 +89,11 @@ public class Generator
     private readonly string _holiday;
     private readonly Dictionary<int, DateOnly> _holidayWeekMap;
     private readonly IEnumerable<OpsPlanRecord> _opsPlan;
+    private readonly string _sourceDirectory;
 
     public Generator(string sourceDirectory, string destinationPath, string holiday, string sundayOfHolidayWeek)
     {
+        _sourceDirectory = sourceDirectory;
         _destinationPath = destinationPath;
         _holiday = holiday;
         _currentData = ReadCurrentData(sourceDirectory);
@@ -110,46 +114,13 @@ public class Generator
 
     public void GenerateZones()
     {
-        Func<CurrentDataRecord, bool> ZoneNameMatches(OpsPlanRecord plan)
-        {
-            return d =>
-            {
-                var marketCode = plan.Zone_Code;
-                var day = NumericDayToDayOfWeekMap[plan.Exception_Delivery_Date].Day_Of_Week.ToUpper();
-                var zoneName = $"{marketCode}: {day}";
+        var doubleDeliveryZonePairs = GetDoubleDeliveryZones();
 
-                return d.Zone.Name.StartsWith(zoneName);
-            };
-        }
-
-        var doubleDeliveryZones = _opsPlan
-            .Where(plan => !plan.Is_Employee_Zone)
-            .Where(plan =>
-            {
-                var refWindowId = _currentData
-                    .FirstOrDefault(ZoneNameMatches(plan))
-                    ?.Window
-                    .WindowId;
-
-                return _currentData.Any(ZoneNameMatches(plan))
-                       && _opsPlan.All(p => p.old_window_id != refWindowId);
-            });
-
-        var zonePairs = from zone in doubleDeliveryZones
-            let marketCode = zone.Zone_Code
-            let newDay = NumericDayToDayOfWeekMap[zone.Exception_Delivery_Date].Day_Of_Week.ToUpper()
-            let originalDay = NumericDayToDayOfWeekMap[zone.Original_Delivery_Date].Day_Of_Week.ToUpper()
-            let refZoneName = $"{marketCode}: {newDay}"
-            let movedZoneName = $"{marketCode}: {originalDay}"
-            let referenceZone = _currentData.First(d => d.Zone.Name.StartsWith(refZoneName))
-            let movedZone = _currentData.First(d => d.Zone.Name.StartsWith(movedZoneName))
-            select (movedZone, referenceZone);
-
-        var zones = (from @group in zonePairs
+        var zones = (from @group in doubleDeliveryZonePairs
             let movedZone = @group.movedZone.Zone
             let refZone = @group.referenceZone.Zone
             let refWindow = @group.referenceZone.Window
-            let name = GenerateDoubleDeliveryZoneName(movedZone.Name, refWindow.StartDay)
+            let name = GenerateDoubleDeliveryZoneName(@group)
             select new LineHaulZone
             {
                 ZoneId = Guid.NewGuid().ToString(),
@@ -176,8 +147,171 @@ public class Generator
         WriteToCsv("CSV Upload - Zones - Local.csv", localZones);
     }
 
-    private static string GenerateDoubleDeliveryZoneName(string movedZoneName, int refZoneStartDay)
+    public void GenerateWindows()
     {
+        string FormatTime(string time) => TimeOnly.Parse(time).ToString("HH:mm:ss");
+        var doubleDeliveryZones = GetDoubleDeliveryZones();
+        var zoneNameToGeneratedIdMap = ReadZones(_sourceDirectory).ToDictionary(z => z.Name, z=> z.ZoneId);
+        var plansByWindowType = _opsPlan
+            .GroupBy(p => doubleDeliveryZones.Any(pair => pair.movedZone.Window.WindowId == p.old_window_id))
+            .ToList();
+        var changedSingleWindows = plansByWindowType.First(g => !g.Key);
+        var changedDoubleDeliveryWindows = plansByWindowType.First(g => g.Key);
+        
+        var changedWindows = from opsPlan in changedSingleWindows
+            let windowId = opsPlan.old_window_id
+            let refData = _currentData.First(d => d.Window.WindowId == windowId)
+            let refWindow = refData.Window
+            let newDeliveryDate = opsPlan.Exception_Delivery_Date.ToString()
+            select new Window
+            {
+                windowId = Guid.NewGuid().ToString(),
+                zoneId = refData.Zone.ZoneId,
+                customizationStartDay = refWindow.CustomizationStartDay,
+                customizationStartTime = FormatTime(refWindow.CustomizationStartTime),
+                customizationEndDay = refWindow.CustomizationEndDay,
+                customizationEndTime = FormatTime(refWindow.CustomizationEndTime),
+                dispatchDay = refWindow.DispatchDay.ToString(),
+                dispatchTime = FormatTime(refWindow.DispatchTime),
+                startDay = newDeliveryDate,
+                startTime = FormatTime(refWindow.StartTime),
+                endDay = newDeliveryDate,
+                endTime = FormatTime(refWindow.EndTime),
+                fulfillmentCenterId = refWindow.FulfillmentCenterId,
+                deliveryPrice = refWindow.DeliveryPrice,
+                subtotalMin = refWindow.SubtotalMin,
+                deliveryProvider = refWindow.DeliveryProvider,
+                packDateOffset = refWindow.PackDateOffset,
+                carrierDaysInTransit = refWindow.CarrierDaysinTransit,
+                messageToUser = $"{_holiday.ToLower()}-window-exceptions-{_holidayWeekMap[0].Year}",
+            };
+
+        var movedDoubleDeliveryWindows = from opsPlan in changedDoubleDeliveryWindows
+            let windowId = opsPlan.old_window_id
+            let doubleDeliveryZone = doubleDeliveryZones.First(pair => pair.movedZone.Window.WindowId == windowId)
+            let deliveryZoneName = GenerateDoubleDeliveryZoneName(doubleDeliveryZone)
+            let refData = _currentData.First(d => d.Window.WindowId == windowId)
+            let zoneId = zoneNameToGeneratedIdMap[deliveryZoneName]
+            let refWindow = refData.Window
+            let newDeliveryDate = opsPlan.Exception_Delivery_Date.ToString()
+            let movedDispatchDateTime = GetDispatchDateTime(doubleDeliveryZone.movedZone)
+            let refDispatchDateTime = GetDispatchDateTime(doubleDeliveryZone.referenceZone)
+            let maxDispatchDateTime = movedDispatchDateTime > refDispatchDateTime ? movedDispatchDateTime : refDispatchDateTime
+            select new Window
+            {
+                windowId = Guid.NewGuid().ToString(),
+                zoneId = zoneId,
+                customizationStartDay = refWindow.CustomizationStartDay,
+                customizationStartTime = FormatTime(refWindow.CustomizationStartTime),
+                customizationEndDay = refWindow.CustomizationEndDay,
+                customizationEndTime = FormatTime(refWindow.CustomizationEndTime),
+                dispatchDay = doubleDeliveryZone.referenceZone.Window.DispatchDay.ToString(),
+                dispatchTime = doubleDeliveryZone.referenceZone.Window.DispatchTime,
+                startDay = newDeliveryDate,
+                startTime = FormatTime(refWindow.StartTime),
+                endDay = newDeliveryDate,
+                endTime = FormatTime(refWindow.EndTime),
+                fulfillmentCenterId = refWindow.FulfillmentCenterId,
+                deliveryPrice = refWindow.DeliveryPrice,
+                subtotalMin = refWindow.SubtotalMin,
+                deliveryProvider = refWindow.DeliveryProvider,
+                packDateOffset = refWindow.PackDateOffset,
+                carrierDaysInTransit = refWindow.CarrierDaysinTransit,
+                messageToUser = $"{_holiday.ToLower()}-window-exceptions-{_holidayWeekMap[0].Year}",
+            };
+
+        var doubleDeliveryUnchangedWindows = from doubleDeliveryZone in doubleDeliveryZones
+            let windowId = doubleDeliveryZone.referenceZone.Window.WindowId
+            let refData = _currentData.First(d => d.Window.WindowId == windowId)
+            let doubleDeliveryZoneName = GenerateDoubleDeliveryZoneName(doubleDeliveryZone)
+            let newZoneId = zoneNameToGeneratedIdMap[doubleDeliveryZoneName]
+            let refWindow = refData.Window
+            select new Window
+            {
+                windowId = Guid.NewGuid().ToString(),
+                zoneId = newZoneId,
+                customizationStartDay = refWindow.CustomizationStartDay,
+                customizationStartTime = FormatTime(refWindow.CustomizationStartTime),
+                customizationEndDay = refWindow.CustomizationEndDay,
+                customizationEndTime = FormatTime(refWindow.CustomizationEndTime),
+                dispatchDay = refWindow.DispatchDay.ToString(),
+                dispatchTime = refWindow.DispatchTime,
+                startDay = refWindow.StartDay.ToString(),
+                startTime = FormatTime(refWindow.StartTime),
+                endDay = refWindow.EndDay,
+                endTime = FormatTime(refWindow.EndTime),
+                fulfillmentCenterId = refWindow.FulfillmentCenterId,
+                deliveryPrice = refWindow.DeliveryPrice,
+                subtotalMin = refWindow.SubtotalMin,
+                deliveryProvider = refWindow.DeliveryProvider,
+                packDateOffset = refWindow.PackDateOffset,
+                carrierDaysInTransit = refWindow.CarrierDaysinTransit,
+                messageToUser = $"{_holiday.ToLower()}-window-exceptions-{_holidayWeekMap[0].Year}",
+            };
+
+        var windows = changedWindows.Union(movedDoubleDeliveryWindows).Union(doubleDeliveryUnchangedWindows);
+        WriteToCsv("CSV Upload - Windows.csv", windows);
+    }
+
+    private DateTime GetDispatchDateTime(CurrentDataRecord record)
+    {
+        var window = record.Window;
+        var custoStartDayOfWeek = int.Parse(window.CustomizationStartDay);
+        var custoClosedDayOfWeek = int.Parse(window.CustomizationEndDay);
+        var weekOffset = custoStartDayOfWeek > custoClosedDayOfWeek ? 0 : 7;
+
+        return _holidayWeekMap[window.DispatchDay]
+            .AddDays(weekOffset)
+            .ToDateTime(TimeOnly.Parse(window.DispatchTime));
+    }
+
+    private IEnumerable<(CurrentDataRecord movedZone, CurrentDataRecord referenceZone)> GetDoubleDeliveryZones()
+    {
+        var doubleDeliveryZones = _opsPlan
+            .Where(plan => !plan.Is_Employee_Zone)
+            .Where(plan =>
+            {
+                bool MatchingZoneName(CurrentDataRecord d)
+                {
+                    return ZoneNameMatchesPredicate(d, plan);
+                }
+
+                var refWindowId = _currentData
+                    .FirstOrDefault(MatchingZoneName)
+                    ?.Window
+                    .WindowId;
+
+                return _currentData.Any(MatchingZoneName)
+                       && _opsPlan.All(p => p.old_window_id != refWindowId);
+            });
+
+        var doubleDeliveryZonePairs = from zone in doubleDeliveryZones
+            let marketCode = zone.Zone_Code
+            let newDay = NumericDayToDayOfWeekMap[zone.Exception_Delivery_Date].Day_Of_Week.ToUpper()
+            let originalDay = NumericDayToDayOfWeekMap[zone.Original_Delivery_Date].Day_Of_Week.ToUpper()
+            let refZoneName = $"{marketCode}: {newDay}"
+            let movedZoneName = $"{marketCode}: {originalDay}"
+            let referenceZone = _currentData.First(d => d.Zone.Name.StartsWith(refZoneName))
+            let movedZone = _currentData.First(d => d.Zone.Name.StartsWith(movedZoneName))
+            select (movedZone, referenceZone);
+
+        return doubleDeliveryZonePairs;
+    }
+
+
+    private static bool ZoneNameMatchesPredicate(CurrentDataRecord data, OpsPlanRecord plan)
+    {
+        var marketCode = plan.Zone_Code;
+        var day = NumericDayToDayOfWeekMap[plan.Exception_Delivery_Date].Day_Of_Week.ToUpper();
+        var zoneName = $"{marketCode}: {day}";
+
+        return data.Zone.Name.StartsWith(zoneName);
+    }
+
+    private static string GenerateDoubleDeliveryZoneName((CurrentDataRecord movedZone, CurrentDataRecord referenceZone) doubleDeliveryZonePair)
+    {
+        var movedZoneName = doubleDeliveryZonePair.movedZone.Zone.Name;
+        var refZoneStartDay = doubleDeliveryZonePair.referenceZone.Window.StartDay;
         var captureCollection = Regex.Match(movedZoneName, "([A-Z]{3}: [^ ]+)(.*)").Groups.Values.ToList();
         var prefix = captureCollection[1];
         var refZoneDayOfWeek = NumericDayToDayOfWeekMap[refZoneStartDay].Day_Of_Week.ToUpper();
@@ -199,6 +333,7 @@ public class Generator
         var path = $"{sourceDirectory}/Ops Plan.csv";
         using var reader = new StreamReader(path);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        
         csv.Context.RegisterClassMap<OpsPlanRecordMap>();
 
         return csv.GetRecords<OpsPlanRecord>().ToList();
@@ -213,5 +348,20 @@ public class Generator
         currentDataCsv.Context.RegisterClassMap<CurrentDataRecordMap>();
 
         return currentDataCsv.GetRecords<CurrentDataRecord>().ToList();
+    }
+
+    private static IEnumerable<LocalZone> ReadZones(string sourceDirectory)
+    {
+        var pathForLineHaul = $"{sourceDirectory}/CSV Upload - Zones - Line Haul.csv";
+        using var lineHaulReader = new StreamReader(pathForLineHaul);
+        using var lineHaulCsv = new CsvReader(lineHaulReader, CultureInfo.InvariantCulture);
+        var lineHaulZones = lineHaulCsv.GetRecords<LineHaulZone>();
+
+        var pathForLocal = $"{sourceDirectory}/CSV Upload - Zones - Local.csv";
+        using var localReader = new StreamReader(pathForLocal);
+        using var localCsv = new CsvReader(localReader, CultureInfo.InvariantCulture);
+        var localZones = localCsv.GetRecords<LocalZone>();
+
+        return lineHaulZones.Union(localZones).ToList();
     }
 }
